@@ -1,0 +1,13 @@
+.p {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    margin: 0;
+    min-width: 300px;
+    min-height: 40px;
+    font-size: 20px;
+    line-height: 40px;
+    color: #fff;
+    background-color: #d41010ea;
+    border-radius: 15px;
+}
