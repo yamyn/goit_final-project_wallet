@@ -4,8 +4,8 @@ export const loadTransactionsStart = createAction('LOAD_TRANSACTIONS/START');
 
 export const loadTransactionsSuccess = createAction(
     'LOAD_TRANSACTIONS/SUCCESS',
-    transactions => ({
-        payload: { transactions },
+    walet => ({
+        payload: walet,
     }),
 );
 
@@ -18,7 +18,7 @@ export const loadTransactionsError = createAction(
 );
 
 export const addTransactionValid = createAction(
-    'ADD_CONTACT/START',
+    'ADD_TRANSACTION_VALID/START',
     transaction => ({
         payload: { transaction },
         meta: { addTransaction: true },
