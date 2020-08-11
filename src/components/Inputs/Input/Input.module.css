@@ -1,0 +1,36 @@
+.container {
+    text-align: left;
+    margin: 10px 0;
+}
+
+.withIcon {
+    background-color: #f9fbfb;
+    border-radius: 5px;
+}
+
+.withIcon input {
+    font-size: 15px;
+}
+
+.withIcon input::placeholder {
+    font-size: 15px;
+    color: #bcc8d2;
+}
+
+.withIcon svg {
+    fill: #bcc8d2;
+}
+
+.withIcon fieldset {
+    border-color: transparent;
+}
+
+.default {
+
+}
+
+.errorText {
+    padding: 5px 0 0 5px;
+    font-size: 12px;
+    color: #f44336;
+}
