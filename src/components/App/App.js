@@ -21,7 +21,11 @@ export default class App extends Component {
         alert: PropTypes.string.isRequired,
     };
 
-    componentDidMount() {}
+    componentDidMount() {
+        const { fetchTransactions, fetchExchange } = this.props;
+        fetchExchange();
+        fetchTransactions();
+    }
 
     render() {
         const { alert } = this.props;
@@ -44,7 +48,7 @@ export default class App extends Component {
                     />
                     <Route path="/login" component={LoginPage} />
                     <Route path="/register" component={SignUpPage} />
-                    <Redirect to="/login" />
+                    <Redirect to="/home" />
                 </Switch>
                 <CSSTransition
                     in={isAlert}

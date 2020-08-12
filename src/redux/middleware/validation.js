@@ -1,7 +1,7 @@
 import * as alertActions from '../alert/alertActions';
-import { addTransaction } from '../transactions/transactionsOperations';
+import { addTransaction } from '../walet/waletOperations';
 import Validation, { META } from '../../helpers/Validation';
-import { getTransactions } from '../transactions/transactionsSelectors';
+import { getTransactions } from '../walet/waletSelectors';
 
 const validation = store => next => action => {
     if (action.meta && action.meta.addTransaction) {
