@@ -1,0 +1,12 @@
+.root {
+    text-align: left;
+}
+
+.root div {
+    padding: 9px 14px;
+}
+
+.root fieldset {
+    border-color: #b9c9d4;
+    border-width: 2px;
+}
