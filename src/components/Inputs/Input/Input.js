@@ -1,12 +1,20 @@
 import React from 'react';
 import { TextField, InputAdornment } from '@material-ui/core';
 import { Mail, Lock, AccountBox } from '@material-ui/icons';
-import styles from './Input.module.css'
+import styles from './Input.module.css';
 
-const Input = ({ withIcon, type, placeholder, errorText, value, onChange, name }) => {
+const Input = ({
+    withIcon,
+    type,
+    placeholder,
+    errorText,
+    value,
+    onChange,
+    name,
+}) => {
     const rootStyles = () => {
-        return withIcon ? styles.withIcon : styles.default
-    }
+        return withIcon ? styles.withIcon : styles.default;
+    };
 
     return (
         <div className={styles.container}>
@@ -20,17 +28,30 @@ const Input = ({ withIcon, type, placeholder, errorText, value, onChange, name }
                 name={name}
                 value={value}
                 onChange={onChange}
-                InputProps={{
-                    startAdornment: (
-                        <InputAdornment position="start">
-                            {type === 'email' ? <Mail /> : type === 'password' ? <Lock /> : <AccountBox />}
-                        </InputAdornment>
-                    ),
-                }}
+                multiline={type === 'textarea'}
+                size={!withIcon ? 'small' : 'medium'}
+                rows={2}
+                InputProps={
+                    withIcon && {
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                {type === 'email' ? (
+                                    <Mail />
+                                ) : type === 'password' ? (
+                                    <Lock />
+                                ) : (
+                                    <AccountBox />
+                                )}
+                            </InputAdornment>
+                        ),
+                    }
+                }
             />
-            {!!errorText && <span className={styles.errorText}>{ errorText }</span>}
+            {!!errorText && (
+                <span className={styles.errorText}>{errorText}</span>
+            )}
         </div>
-    )
+    );
 };
 
 export default Input;

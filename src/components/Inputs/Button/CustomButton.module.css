@@ -1,0 +1,19 @@
+button.main {
+    color: #fff;
+    text-transform: capitalize;
+    background-color: #415b7d;
+}
+
+button.main:hover {
+    background-color: #344966;
+}
+
+button.secondary {
+    color: #fff;
+    text-transform: capitalize;
+    background-color: #ff6c00;
+}
+
+button.secondary:hover {
+    background-color: #d95801;
+}

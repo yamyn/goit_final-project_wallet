@@ -26,7 +26,24 @@
 }
 
 .default {
+    border-radius: 5px;
+}
 
+.default input,
+.default textarea {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.withIcon input::placeholder,
+.withIcon textarea::placeholder {
+    font-size: 13px;
+    color: #bcc8d2;
+}
+
+.default fieldset {
+    border-color: #b9c9d4;
+    border-width: 2px;
 }
 
 .errorText {
