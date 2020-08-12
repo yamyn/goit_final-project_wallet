@@ -2,9 +2,10 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import transactionsReducer from './transactions/transactionsReducer';
+import waletReducer from './walet/waletReducer';
 import alertReducer from './alert/alertReducer';
 import sessionReducer from './session/sessionReducer';
+import exchangeReducer from './exchange/exchangeReducer';
 
 import validation from './middleware/validation';
 import errorHandler from './middleware/errorHandler';
@@ -18,9 +19,10 @@ const persistedReducer = persistReducer(persistConfig, sessionReducer);
 
 export const store = configureStore({
     reducer: {
-        transactions: transactionsReducer,
+        walet: waletReducer,
         alert: alertReducer,
         session: persistedReducer,
+        exchange: exchangeReducer,
     },
     middleware: [...getDefaultMiddleware(), errorHandler, validation],
 });
