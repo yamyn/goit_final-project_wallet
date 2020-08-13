@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import TableWithTransactions from '../components/Table/TableForMobile/TableWithTransactionsContainer';
-// import TableWithTransactions from '../components/Table/TableWithTransactionsContainer';
+import TableWithTransactions from '../components/Table/TableWithTransactionsContainer';
 
 const DiagramPage = () => {
     return (

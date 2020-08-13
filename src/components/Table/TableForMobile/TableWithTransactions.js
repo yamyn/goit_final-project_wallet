@@ -15,11 +15,11 @@ const StyledTableCell = withStyles({
 
 const StyledTableRow = withStyles({
     root: {
-        borderLeft: '4px solid',
-        borderColor: ' #669999',
         '&:nth-of-type(odd)': {
             backgroundColor: '#f3f6f6',
         },
+        borderLeft: '4px solid',
+        borderColor: ' #669999',
     },
 })(TableRow);
 
@@ -35,9 +35,12 @@ const TableWithTransactions = ({ transactions }) => {
     return (
         <div>
             {transactions.map(transaction => (
-                <StyledTable aria-label="transation table">
+                <StyledTable
+                    aria-label="transaction table"
+                    key={transaction._id}
+                >
                     <TableBody>
-                        <StyledTableRow key={transaction._id}>
+                        <StyledTableRow>
                             <StyledTableCell align="center">
                                 Дата
                             </StyledTableCell>
@@ -46,7 +49,7 @@ const TableWithTransactions = ({ transactions }) => {
                             </StyledTableCell>
                         </StyledTableRow>
 
-                        <StyledTableRow key={transaction._id}>
+                        <StyledTableRow>
                             <StyledTableCell align="center">
                                 Тип
                             </StyledTableCell>
@@ -54,7 +57,7 @@ const TableWithTransactions = ({ transactions }) => {
                                 {transaction.type}
                             </StyledTableCell>
                         </StyledTableRow>
-                        <StyledTableRow key={transaction._id}>
+                        <StyledTableRow>
                             <StyledTableCell align="center">
                                 Категория
                             </StyledTableCell>
@@ -62,7 +65,7 @@ const TableWithTransactions = ({ transactions }) => {
                                 {transaction.category}
                             </StyledTableCell>
                         </StyledTableRow>
-                        <StyledTableRow key={transaction._id}>
+                        <StyledTableRow>
                             <StyledTableCell align="center">
                                 Комментарий
                             </StyledTableCell>
@@ -70,7 +73,7 @@ const TableWithTransactions = ({ transactions }) => {
                                 {transaction.comments}
                             </StyledTableCell>
                         </StyledTableRow>
-                        <StyledTableRow key={transaction._id}>
+                        <StyledTableRow>
                             <StyledTableCell align="center">
                                 Сумма
                             </StyledTableCell>
@@ -78,7 +81,7 @@ const TableWithTransactions = ({ transactions }) => {
                                 {transaction.amount}
                             </StyledTableCell>
                         </StyledTableRow>
-                        <StyledTableRow key={transaction._id}>
+                        <StyledTableRow>
                             <StyledTableCell align="center">
                                 Баланс
                             </StyledTableCell>

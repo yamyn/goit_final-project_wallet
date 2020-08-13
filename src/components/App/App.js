@@ -35,12 +35,11 @@ export default class App extends Component {
             <div className={styles.container}>
                 <Header />
                 <Switch>
-                    {/* <ProtectedRoute
+                    <ProtectedRoute
                         path="/diagram"
                         component={DiagramPage}
                         redirectTo="/login"
-                    /> */}
-                    <Route path="/diagram" component={DiagramPage} />
+                    />
                     <ProtectedRoute
                         path="/home"
                         component={HomePage}
