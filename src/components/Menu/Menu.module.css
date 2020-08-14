@@ -1,0 +1,15 @@
+.root {
+    background-color: #284060;
+    width: 310px;
+    color: white;
+}
+
+.icon {
+    color: #ffff;
+}
+
+.text {
+    font-weight: 800;
+    font-size: 15px;
+    font-family: '../../fonts/bauhouse/BauhausC_Medium_Bold.ttf';
+}
