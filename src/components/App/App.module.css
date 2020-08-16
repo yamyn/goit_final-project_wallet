@@ -15,9 +15,9 @@ h1 {
 
 .container {
     text-align: center;
-    width: 800px;
+    max-width: 1280px;
     margin: 0 auto;
     min-height: 100vh;
-    outline: #131313 groove 1px;
+    outline: #ffe6e6 groove 1px;
     background-color: #fff;
 }

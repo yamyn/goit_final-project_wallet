@@ -13,7 +13,6 @@ import LoginPage from '../../pages/LoginPage';
 import SignUpPage from '../../pages/SignupPage';
 
 import ProtectedRoute from '../ProtectedRoute';
-import Header from '../Header/HeaderContainer';
 import Alert from '../Alert/Alert';
 
 export default class App extends Component {
@@ -33,7 +32,6 @@ export default class App extends Component {
 
         return (
             <div className={styles.container}>
-                <Header />
                 <Switch>
                     <ProtectedRoute
                         path="/diagram"

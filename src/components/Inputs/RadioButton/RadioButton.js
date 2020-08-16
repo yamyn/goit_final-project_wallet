@@ -10,15 +10,17 @@ const useStyles = makeStyles({
         },
         '+ span': {
             color: 'red',
-        }
+        },
     },
     icon: {
         borderRadius: '50%',
         width: 16,
         height: 16,
-        boxShadow: 'inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)',
+        boxShadow:
+            'inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)',
         backgroundColor: '#f5f8fa',
-        backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))',
+        backgroundImage:
+            'linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))',
         '$root.Mui-focusVisible &': {
             outline: '2px auto #bbcad5',
             outlineOffset: 2,
@@ -33,12 +35,14 @@ const useStyles = makeStyles({
     },
     checkedIcon: {
         backgroundColor: 'transparent',
-        backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
+        backgroundImage:
+            'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
         '&:before': {
             display: 'block',
             width: 16,
             height: 16,
-            backgroundImage: 'radial-gradient(#ff6c00,#ff6c00 28%,transparent 32%)',
+            backgroundImage:
+                'radial-gradient(#ff6c00,#ff6c00 28%,transparent 32%)',
             content: '""',
         },
         'input:hover ~ &': {
@@ -47,7 +51,7 @@ const useStyles = makeStyles({
     },
 });
 
-const RadioButton = (props) => {
+const RadioButton = props => {
     const classes = useStyles();
 
     return (
@@ -55,7 +59,9 @@ const RadioButton = (props) => {
             className={classes.root}
             disableRipple
             color="default"
-            checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
+            checkedIcon={
+                <span className={clsx(classes.icon, classes.checkedIcon)} />
+            }
             icon={<span className={classes.icon} />}
             {...props}
         />

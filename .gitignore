@@ -1,5 +1,7 @@
 # production
 /build
+/model
+#
 
 # Logs
 logs

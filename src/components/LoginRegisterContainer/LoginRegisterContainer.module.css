@@ -1,0 +1,30 @@
+@font-face {
+    font-family: 'BauhausC_B';
+    src: local('../../fonts/bauhouse/BauhausC_B.ttf') format('ttf');
+}
+
+.LoginRegisterContainer {
+    max-width: 100%;
+    height: 850px;
+    background-color: #f9fcfb;
+    background-image: url('../../img/LoginRegister/LoginBG.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.FormContainer {
+    width: 550px;
+    height: 390px;
+    box-shadow: 10px 17.321px 40px 0px rgba(112, 124, 130, 0.3);
+    background-color: #fff;
+}
+
+.WalletHeading {
+    font-size: 24px;
+    font-family: 'BauhausC_B';
+    color: rgb(44, 44, 44);
+    line-height: 1.25;
+}
