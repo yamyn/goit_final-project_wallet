@@ -32,6 +32,7 @@ const StyledTableRow = withStyles({
 
 const TableWithTransactions = ({ transactions }) => {
     const isMobile = useMediaQuery('(max-width:480px)');
+
     {
         if (isMobile)
             return (

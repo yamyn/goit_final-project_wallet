@@ -12,13 +12,14 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import styles from './Header.module.css';
 import useStyles from './HeaderStyles';
+import { ReactSVG } from 'react-svg';
+import logo from '../../img/icons/logo.svg';
+import logout from '../../img/icons/logout-2/logout.svg';
 
 export default function Header({ user, authenticated, onLogOut }) {
-    const classes = useStyles();
+    const { classes, isNotMobile } = useStyles();
 
     return (
         <div className={classes.root}>
@@ -31,7 +32,7 @@ export default function Header({ user, authenticated, onLogOut }) {
                         color="primary"
                         aria-label="WalletIcon"
                     >
-                        <AccountBalanceWalletIcon />
+                        <ReactSVG src={logo} className={classes.logo} />
                     </IconButton>
                     <Typography variant="h6" className={classes.title}>
                         Wallet
@@ -40,25 +41,30 @@ export default function Header({ user, authenticated, onLogOut }) {
                         email={user.email}
                         isAuth={authenticated}
                         variant="h6"
-                        className={(classes.menuButton, styles.name)}
+                        className={(classes.menuButton, classes.name)}
                     >
                         {user.name}
                     </Typography>
-                    <Divider orientation="vertical" flexItem />
+                    {isNotMobile && <Divider orientation="vertical" flexItem />}
+
                     <IconButton
                         edge="start"
                         className={classes.icon}
                         color="grey"
                         aria-label="ExitToAppIconn"
                     >
-                        <ExitToAppIcon />
+                        <ReactSVG src={logout} className={classes.logout} />
                     </IconButton>
-                    <Button
-                        color="grey"
-                        className={classes.LogOut}
-                        onClick={onLogOut}
-                        alt=" Logout"
-                    ></Button>
+                    {isNotMobile && (
+                        <Button
+                            color="grey"
+                            className={classes.LogOut}
+                            onClick={onLogOut}
+                            alt=" Logout"
+                        >
+                            Выйти
+                        </Button>
+                    )}
                 </Toolbar>
             </AppBar>
         </div>

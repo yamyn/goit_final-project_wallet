@@ -1,36 +1,35 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Paper from '@material-ui/core/Paper';
 import HomeIcon from '@material-ui/icons/Home';
+import { ReactSVG } from 'react-svg';
 import TimelineIcon from '@material-ui/icons/Timeline';
-import styles from './Menu.module.css';
+import useStyles from './MenuStyle';
+import home from '../../img/icons/home/baseline-home-24px.svg';
 
 // eslint-disable-next-line react/prop-types
 export default function Menu({ onClick }) {
+    const { classes, isNotMobile } = useStyles();
     return (
-        <div className={styles.root}>
+        <>
             <Paper elevation={3} />
-            <List component="nav" aria-label="menu">
+            <List component="nav" aria-label="menu" className={classes.list}>
                 <ListItem button onClick={onClick}>
-                    <ListItemIcon>
-                        <HomeIcon className={styles.icon} />
-                    </ListItemIcon>
-                    <ListItemText className={styles.text} primary="Главная" />
-                </ListItem>
-                <ListItem button onClick={onClick}>
-                    <ListItemIcon className={styles.icon}>
-                        <TimelineIcon className={styles.icon} />
-                    </ListItemIcon>
-                    <ListItemText
-                        className={styles.text}
-                        primary="Статистика"
-                    />
+                    <NavLink
+                        to="/home"
+                        exact
+                        activeClassName={classes.active}
+                        className={classes.link}
+                    >
+                        <ReactSVG src={home} className={classes.icon} />
+                    </NavLink>
                 </ListItem>
             </List>
             <Paper />
-        </div>
+        </>
     );
 }
