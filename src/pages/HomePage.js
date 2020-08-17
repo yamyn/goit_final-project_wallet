@@ -1,5 +1,11 @@
 import React from 'react';
-
-const HomePage = () => <h1>Welcome to MyWallet</h1>;
+import Header from '../components/Header/HeaderContainer';
+import TableWithTransactions from '../components/Table/TableWithTransactionsContainer';
+const HomePage = () => (
+    <>
+        <Header />
+        <TableWithTransactions />
+    </>
+);
 
 export default HomePage;

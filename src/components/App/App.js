@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import PropTypes from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
-
-import styles from './App.module.css';
+import { Container } from '@material-ui/core';
 import popTransition from '../../transitions/pop.module.css';
 
 // Pages
@@ -13,7 +12,7 @@ import LoginPage from '../../pages/LoginPage';
 import SignUpPage from '../../pages/SignupPage';
 
 import ProtectedRoute from '../ProtectedRoute';
-import Header from '../Header/HeaderContainer';
+
 import Alert from '../Alert/Alert';
 
 export default class App extends Component {
@@ -32,8 +31,7 @@ export default class App extends Component {
         const isAlert = !!alert;
 
         return (
-            <div className={styles.container}>
-                <Header />
+            <Container disableGutters={true}>
                 <Switch>
                     <ProtectedRoute
                         path="/diagram"
@@ -57,7 +55,7 @@ export default class App extends Component {
                 >
                     <Alert message={alert} />
                 </CSSTransition>
-            </div>
+            </Container>
         );
     }
 }
