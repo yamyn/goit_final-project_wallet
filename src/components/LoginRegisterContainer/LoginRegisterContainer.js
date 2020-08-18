@@ -8,9 +8,6 @@ const LoginRegisterContainer = () => {
                 <img src="../../img/LoginRegister/LoginBG.jpg" alt="" />
                 <span>Finance App</span>
             </div>
-            <div className={s.FormContainer}>
-                <h2 className={s.WalletHeading}>Wallet</h2>
-            </div>
         </div>
     );
 };

@@ -15,6 +15,7 @@
 .withIcon input::placeholder {
     font-size: 15px;
     color: #bcc8d2;
+    padding-left: 10px;
 }
 
 .withIcon svg {

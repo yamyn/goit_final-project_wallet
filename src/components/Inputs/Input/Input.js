@@ -11,6 +11,7 @@ const Input = ({
     value,
     onChange,
     name,
+    id,
 }) => {
     const rootStyles = () => {
         return withIcon ? styles.withIcon : styles.default;
@@ -27,6 +28,7 @@ const Input = ({
                 error={!!errorText}
                 name={name}
                 value={value}
+                id={id}
                 onChange={onChange}
                 multiline={type === 'textarea'}
                 size={!withIcon ? 'small' : 'medium'}
