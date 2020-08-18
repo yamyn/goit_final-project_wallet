@@ -12,9 +12,9 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import useStyles from './HeaderStyles';
 import { ReactSVG } from 'react-svg';
+
+import useStyles from './HeaderStyles';
 import logo from '../../img/icons/logo.svg';
 import logout from '../../img/icons/logout-2/logout.svg';
 
@@ -29,8 +29,6 @@ export default function Header({ user, authenticated, onLogOut }) {
                         edge="start"
                         fontSize="large"
                         className={(classes.menuButton, classes.buttonWallet)}
-                        color="primary"
-                        aria-label="WalletIcon"
                     >
                         <ReactSVG src={logo} className={classes.logo} />
                     </IconButton>
@@ -39,7 +37,6 @@ export default function Header({ user, authenticated, onLogOut }) {
                     </Typography>
                     <Typography
                         email={user.email}
-                        isAuth={authenticated}
                         variant="h6"
                         className={(classes.menuButton, classes.name)}
                     >
@@ -47,12 +44,7 @@ export default function Header({ user, authenticated, onLogOut }) {
                     </Typography>
                     {isNotMobile && <Divider orientation="vertical" flexItem />}
 
-                    <IconButton
-                        edge="start"
-                        className={classes.icon}
-                        color="grey"
-                        aria-label="ExitToAppIconn"
-                    >
+                    <IconButton edge="start" className={classes.icon}>
                         <ReactSVG src={logout} className={classes.logout} />
                     </IconButton>
                     {isNotMobile && (

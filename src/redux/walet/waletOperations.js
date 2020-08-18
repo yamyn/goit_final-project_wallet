@@ -1,4 +1,6 @@
 import _ from 'lodash';
+import moment from 'moment';
+
 import { fetch, setAuthToken } from '../../helpers/apiService';
 import { getReqUserData } from '../session/sessionSelectors';
 
@@ -23,7 +25,13 @@ export const fetchTransactions = () => (dispatch, getState) => {
     fetch
         .get(addPrefix(userId), setAuthToken(token))
         .then(response => {
-            const transactions = _.get(response, 'data.finance.data');
+            const transactions = _.get(response, 'data.finance.data').map(
+                transaction => {
+                    const date = moment(transaction.date).format(`DD.mm.yy`);
+                    return { ...transaction, date };
+                },
+            );
+
             const balance = _.get(response, 'data.finance.totalBalance');
 
             dispatch(loadTransactionsSuccess({ transactions, balance }));

@@ -10,6 +10,8 @@ import { ReactSVG } from 'react-svg';
 import TimelineIcon from '@material-ui/icons/Timeline';
 import useStyles from './MenuStyle';
 import home from '../../img/icons/home/baseline-home-24px.svg';
+import diagram from '../../img/icons/diagrams/baseline-timeline-24px.svg';
+import exchange from '../../img/icons/currency exchange/baseline-attach_money-24px.svg';
 
 // eslint-disable-next-line react/prop-types
 export default function Menu({ onClick }) {
@@ -17,8 +19,8 @@ export default function Menu({ onClick }) {
     return (
         <>
             <Paper elevation={3} />
-            <List component="nav" aria-label="menu" className={classes.list}>
-                <ListItem button onClick={onClick}>
+            <List component="ul" className={classes.list}>
+                <ListItem className={classes.item}>
                     <NavLink
                         to="/home"
                         exact
@@ -26,6 +28,26 @@ export default function Menu({ onClick }) {
                         className={classes.link}
                     >
                         <ReactSVG src={home} className={classes.icon} />
+                    </NavLink>
+                </ListItem>
+                <ListItem className={classes.item}>
+                    <NavLink
+                        to="/diagram"
+                        exact
+                        activeClassName={classes.active}
+                        className={classes.link}
+                    >
+                        <ReactSVG src={diagram} className={classes.icon} />
+                    </NavLink>
+                </ListItem>
+                <ListItem className={classes.item}>
+                    <NavLink
+                        to="/home/exchange"
+                        exact
+                        activeClassName={classes.active}
+                        className={classes.link}
+                    >
+                        <ReactSVG src={exchange} className={classes.icon} />
                     </NavLink>
                 </ListItem>
             </List>

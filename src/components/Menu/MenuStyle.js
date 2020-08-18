@@ -9,10 +9,17 @@ export default () => {
         isNotMobile,
         classes: makeStyles(() => ({
             list: {
-                margin: 0,
+                margin: '0 auto',
                 padding: 0,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+            },
+            item: {
+                padding: '0 7px',
             },
             link: {
+                margin: '0 auto',
                 width: 31,
                 height: 28,
                 borderRadius: 8,

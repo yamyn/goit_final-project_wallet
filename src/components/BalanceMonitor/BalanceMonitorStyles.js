@@ -8,12 +8,20 @@ export default () => {
     return {
         isNotMobile,
         classes: makeStyles(() => ({
-            root: {
-                minHeight: 40,
-                paddingRight: 8,
-                paddingLeft: 8,
+            wrap: {
+                height: 100,
+                width: '95%',
+                margin: '0 auto 20px',
                 backgroundColor: theme.palette.background.navPrimary,
-                marginBottom: 20,
+                borderRadius: 8,
+                textAlign: 'center',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+            },
+            monitor: {
+                margin: 0,
+                color: theme.palette.primary.iconActive,
             },
         }))(),
     };
