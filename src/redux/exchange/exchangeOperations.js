@@ -10,7 +10,7 @@ import {
 } from './exchangeActions';
 
 export default () => (dispatch, getState) => {
-    const stateTime = getTime(getState());
+    const stateTime = moment(getTime(getState()), 'hh-mm');
     const condTime = moment().subtract(5, 'm');
     if (stateTime.isSameOrAfter(condTime)) return;
 
