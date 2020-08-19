@@ -1,5 +1,10 @@
 import React from 'react';
+import CurrencyExchange from '../components/CurrencyExchange/CurrencyExchangeContainer';
 
-const HomePage = () => <h1>Welcome to MyWallet</h1>;
+const HomePage = () => (
+    <>
+        <CurrencyExchange />
+    </>
+);
 
 export default HomePage;
