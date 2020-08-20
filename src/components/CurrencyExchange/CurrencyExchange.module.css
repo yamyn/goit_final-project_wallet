@@ -1,0 +1,15 @@
+.tableContainer {
+    max-width: 310px;
+}
+@media (max-width: 768px) {
+    .tableContainer {
+        max-width: 350px;
+        height: 190px;
+    }
+}
+
+@media (max-width: 468px) {
+    .tableContainer {
+        max-width: 95%;
+    }
+}
