@@ -1,9 +1,14 @@
 import React from 'react';
-import CurrencyExchange from '../components/CurrencyExchange/CurrencyExchangeContainer';
+
+import Header from '../components/Header/HeaderContainer';
+import NavBar from '../components/NavBar/NavBar';
+import TableWithTransactions from '../components/Table/TableWithTransactionsContainer';
 
 const HomePage = () => (
     <>
-        <CurrencyExchange />
+        <Header />
+        <NavBar />
+        <TableWithTransactions />
     </>
 );
 

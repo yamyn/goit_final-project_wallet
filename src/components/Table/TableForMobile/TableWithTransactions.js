@@ -25,7 +25,7 @@ const StyledTableRow = withStyles({
 
 const StyledTable = withStyles({
     root: {
-        width: '306px',
+        width: '95%',
         margin: '0 auto',
         borderCollapse: 'collapse',
     },
