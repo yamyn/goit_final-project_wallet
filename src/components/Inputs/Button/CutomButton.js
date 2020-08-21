@@ -14,6 +14,7 @@ const CustomButton = ({ title, type, onClick }) => {
                 fullWidth
                 variant="contained"
                 onClick={onClick}
+                type={type}
             >
                 {title}
             </Button>

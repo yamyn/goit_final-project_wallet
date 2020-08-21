@@ -12,6 +12,7 @@ button.secondary {
     color: #fff;
     text-transform: capitalize;
     background-color: #ff6c00;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 button.secondary:hover {

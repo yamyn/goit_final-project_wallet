@@ -30,11 +30,7 @@ export default class App extends Component {
         const isAlert = !!alert;
 
         return (
-<<<<<<< HEAD
-            <div className={styles.container}>
-=======
             <Container disableGutters={true}>
->>>>>>> dev
                 <Switch>
                     <ProtectedRoute
                         path="/diagram"
