@@ -14,7 +14,7 @@ import diagram from '../../img/icons/diagrams/baseline-timeline-24px.svg';
 import exchange from '../../img/icons/currency exchange/baseline-attach_money-24px.svg';
 
 // eslint-disable-next-line react/prop-types
-export default function Menu({ onClick }) {
+export default function Menu() {
     const { classes, isNotMobile } = useStyles();
     return (
         <>
@@ -42,7 +42,7 @@ export default function Menu({ onClick }) {
                 </ListItem>
                 <ListItem className={classes.item}>
                     <NavLink
-                        to="/home/exchange"
+                        to="/exchange"
                         exact
                         activeClassName={classes.active}
                         className={classes.link}

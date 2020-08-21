@@ -4,24 +4,29 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/no-this-in-sfc */
 import React from 'react';
-import PropTypes from 'prop-types';
-
-import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import { Route } from 'react-router-dom';
 
 import BalanceMonitor from '../BalanceMonitor/BalanceMonitorContainer';
 import useStyles from './NavBarStyles';
 import Menu from '../Menu/Menu';
+import CurrencyExchange from '../CurrencyExchange/CurrencyExchangeContainer';
 
 export default function NavBar() {
     const { classes, isNotMobile } = useStyles();
+    const path = isNotMobile ? '/' : '/exchange';
 
     return (
         <>
             <Toolbar className={classes.root}>
                 <Menu />
             </Toolbar>
-            <BalanceMonitor />
+            {isNotMobile ? (
+                <BalanceMonitor />
+            ) : (
+                <Route path="/home" component={BalanceMonitor} />
+            )}
+            <Route path={path} component={CurrencyExchange} />
         </>
     );
 }

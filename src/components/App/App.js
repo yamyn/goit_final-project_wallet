@@ -10,6 +10,7 @@ import DiagramPage from '../../pages/DiagramPage';
 import HomePage from '../../pages/HomePage';
 import LoginPage from '../../pages/LoginPage';
 import SignUpPage from '../../pages/SignupPage';
+import ExchangeMobilePage from '../../pages/ExchangeMobilePage';
 
 import ProtectedRoute from '../ProtectedRoute';
 
@@ -22,13 +23,15 @@ export default class App extends Component {
 
     componentDidMount() {
         const { fetchTransactions, fetchExchange } = this.props;
-        fetchExchange();
         fetchTransactions();
+        fetchExchange();
     }
 
     render() {
         const { alert } = this.props;
         const isAlert = !!alert;
+        // const theme = useTheme();
+        // const isMobile = useMediaQuery(theme.breakpoints.down('tablet'));
 
         return (
             <Container disableGutters={true}>
@@ -38,13 +41,16 @@ export default class App extends Component {
                         component={DiagramPage}
                         redirectTo="/login"
                     />
+
                     <ProtectedRoute
                         path="/home"
                         component={HomePage}
                         redirectTo="/login"
                     />
+
                     <Route path="/login" component={LoginPage} />
                     <Route path="/register" component={SignUpPage} />
+                    <Route path="/exchange" component={ExchangeMobilePage} />
                     <Redirect to="/home" />
                 </Switch>
                 <CSSTransition
