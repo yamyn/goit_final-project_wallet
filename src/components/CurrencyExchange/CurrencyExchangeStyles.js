@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import bg from '../../img/icons/currency exchange/bg.svg';
 
 export default () => {
@@ -9,8 +9,10 @@ export default () => {
                 height: 460,
                 margin: '0 auto',
                 backgroundImage: `url(${bg})`,
-
                 backgroundSize: '100% auto',
+                [theme.breakpoints.only('tablet')]: {
+                    position: 'absolute',
+                },
             },
             ceilHead: {
                 border: 0,

@@ -13,20 +13,34 @@ export default () => {
             },
             headerWrap: {
                 minHeight: 40,
-                paddingRight: 8,
-                paddingLeft: 8,
+                padding: '0 8px',
                 backgroundColor: theme.palette.background.secondary,
+                [theme.breakpoints.up('tablet')]: {
+                    minHeight: 80,
+                    padding: '0 32px',
+                    backgroundColor: theme.palette.background.primary,
+                },
             },
             logo: {
                 marginRight: 8,
                 width: 24,
                 height: 24,
                 fill: theme.palette.primary.secondary,
+                [theme.breakpoints.up('tablet')]: {
+                    fill: theme.palette.background.navPrimary,
+                },
             },
             logout: {
                 width: 18,
                 height: 18,
                 fill: theme.palette.primary.secondary,
+                [theme.breakpoints.up('tablet')]: {
+                    marginRight: 5,
+                },
+            },
+            divider: {
+                marginRight: 18,
+                width: 1,
             },
             menuButton: {
                 margin: 0,
@@ -53,6 +67,10 @@ export default () => {
             LogOut: {
                 padding: 0,
                 color: theme.palette.primary.secondary,
+                fontFamily: '../../fonts/bauhouse/BauhausC_Medium_Bold.ttf',
+                [theme.breakpoints.up('tablet')]: {
+                    fontSize: 17,
+                },
             },
             name: {
                 marginRight: 17,

@@ -15,6 +15,7 @@ export default createMuiTheme({
             iconActive: '#fff',
         },
         background: {
+            primary: '#fff',
             secondary: '#284060',
             navPrimary: '#3a5374',
         },
