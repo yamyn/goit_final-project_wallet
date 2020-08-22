@@ -4,7 +4,7 @@
 }
 
 .loginForm {
-    width: 300px;
+    width: 250px;
     height: 242px;
     display: flex;
     flex-direction: column;
@@ -13,7 +13,7 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.loginForm button {
+.loginFormButton {
     margin-bottom: 20px;
 }
 
