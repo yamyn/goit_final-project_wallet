@@ -3,11 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 export default () => {
     return {
         classes: makeStyles(() => ({
-            loginFormContainer: {
-                paddingBottom: 20,
+            registerFormContainer: {
+                paddingBottom: 50,
+                marginTop: 50,
                 display: 'flex',
                 width: '100%',
-                height: 'auto',
                 flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -25,9 +25,9 @@ export default () => {
                 lineHeight: '1.25',
                 marginLeft: '8px',
             },
-            loginForm: {
+            registerForm: {
                 width: 250,
-                height: 'auto',
+                height: 242,
                 marginBottom: 20,
                 display: `flex`,
                 flexDirection: `column`,
