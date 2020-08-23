@@ -22,8 +22,9 @@ export default () => {
                 },
             },
             wrap: {
-                [theme.breakpoints.only('tablet')]: {
+                [theme.breakpoints.between('mobile', 'desktop')]: {
                     position: 'relative',
+                    backgroundColor: '#777',
                 },
             },
         }))(),

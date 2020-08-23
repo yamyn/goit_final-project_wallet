@@ -4,7 +4,7 @@ export default createMuiTheme({
     breakpoints: {
         values: {
             mobile: 319,
-            tablet: 767,
+            tablet: 740,
             desktop: 1023,
         },
     },
@@ -13,6 +13,7 @@ export default createMuiTheme({
             main: '#a52a2a',
             secondary: '#828fa1',
             iconActive: '#fff',
+            tableSecondary: '#f3f6f6',
         },
         background: {
             primary: '#fff',

@@ -7,14 +7,15 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { ReactSVG } from 'react-svg';
 import useStyles from './CurrencyExchangeStyles';
-import ecxhange from '../../img/icons/currency exchange/bg.svg';
+import Paper from '@material-ui/core/Paper';
 
-export default function CurrencyExchange({ currencies }) {
-    const { classes } = useStyles();
+export default function CurrencyExchange({ currencies, rowCount }) {
+    const { classes, isLaptop } = useStyles(rowCount);
+    console.log('isLap: ', isLaptop);
     return (
         <TableContainer className={classes.root}>
+            {isLaptop && <Paper elevation={5} />}
             <Table aria-label="currency table">
                 <TableHead className={classes.head}>
                     <TableRow>

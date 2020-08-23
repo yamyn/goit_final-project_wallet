@@ -15,7 +15,7 @@ const getChart = statistic => {
         ],
         datasets: [
             {
-                label: '#ываываыва',
+                label: 'diagram',
                 data: statistic,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -49,7 +49,17 @@ const DiagramPage = statisticGET => {
                 data={getChart(statistic)}
                 width={200}
                 height={70}
-                options={{ maintainAspectRatio: false }}
+                options={{
+                    maintainAspectRatio: false,
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 15,
+                            fontColor: '#000',
+                            lineWidth: 0,
+                        },
+                    },
+                }}
             />
         </>
     );

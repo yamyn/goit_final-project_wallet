@@ -63,7 +63,7 @@ export default function Menu() {
                 </ListItem>
                 <ListItem className={classes.item}>
                     {isNotMobile ? (
-                        <span className={classes.linkText}>Баланс: 3000</span>
+                        <span className={classes.balance}>Баланс: 3000</span>
                     ) : (
                         <NavLink
                             to="/exchange"

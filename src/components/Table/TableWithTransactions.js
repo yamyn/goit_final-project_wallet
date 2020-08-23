@@ -1,6 +1,6 @@
 import React from 'react';
 // Material UI
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, useTheme } from '@material-ui/core/styles';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -12,11 +12,8 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 // components
 import TableWithTransactionsForMobile from './TableForMobile/TableWithTransactions';
 
-// styles
-import styles from './TableWithTransactions.module.css';
-
 const StyledTableCell = withStyles({
-    head: { backgroundColor: '#ffffff', textTransform: 'capitalize' },
+    head: { backgroundColor: '#fff', textTransform: 'capitalize' },
     body: {
         fontSize: 13,
     },
@@ -30,17 +27,28 @@ const StyledTableRow = withStyles({
     },
 })(TableRow);
 
-const TableWithTransactions = ({ transactions }) => {
-    const isMobile = useMediaQuery('(max-width:768px)');
+const colorType = {
+    '-': '#e20505',
+    '+': '#25a805',
+};
 
+const TableWithTransactions = ({ transactions }) => {
+    const theme = useTheme();
+    const isMobile = useMediaQuery(
+        theme.breakpoints.down(theme.breakpoints.values.tablet),
+    );
+    console.log('isMob: ', isMobile);
     {
         if (isMobile)
             return (
-                <TableWithTransactionsForMobile transactions={transactions} />
+                <TableWithTransactionsForMobile
+                    transactions={transactions}
+                    colors={colorType}
+                />
             );
     }
     return (
-        <div className={styles.tableContainer}>
+        <div>
             <Table aria-label="transation table">
                 <TableHead>
                     <TableRow>
@@ -62,7 +70,10 @@ const TableWithTransactions = ({ transactions }) => {
                             <StyledTableCell component="th" scope="row">
                                 {transaction.date}
                             </StyledTableCell>
-                            <StyledTableCell align="center">
+                            <StyledTableCell
+                                align="center"
+                                style={{ color: colorType[transaction.type] }}
+                            >
                                 {transaction.type}
                             </StyledTableCell>
                             <StyledTableCell align="center">
@@ -71,7 +82,10 @@ const TableWithTransactions = ({ transactions }) => {
                             <StyledTableCell align="center">
                                 {transaction.comments}
                             </StyledTableCell>
-                            <StyledTableCell align="center">
+                            <StyledTableCell
+                                align="center"
+                                style={{ color: colorType[transaction.type] }}
+                            >
                                 {transaction.amount}
                             </StyledTableCell>
                             <StyledTableCell align="center">

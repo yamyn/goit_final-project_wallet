@@ -32,6 +32,8 @@ export default () => {
                 backgroundColor: theme.palette.background.secondary,
                 fill: theme.palette.primary.secondary,
                 [theme.breakpoints.up('tablet')]: {
+                    textDecoration: 'none',
+                    margin: 0,
                     color: theme.palette.primary.secondary,
                     width: '100%',
                     display: 'flex',
@@ -40,25 +42,30 @@ export default () => {
                 },
             },
             linkText: {
+                paddingTop: 4,
+                fontSize: 18,
                 marginRight: 13,
             },
+            balance: {
+                fontSize: 18,
+                marginRight: 13,
+                color: theme.palette.primary.secondary,
+            },
             active: {
-                width: 31,
-                height: 28,
-                borderRadius: 8,
                 backgroundColor: theme.palette.primary.secondary,
                 fill: theme.palette.primary.iconActive,
                 [theme.breakpoints.up('tablet')]: {
                     fill: theme.palette.background.navPrimary,
                     color: theme.palette.background.navPrimary,
-                    width: 70,
-                    display: 'flex',
                     backgroundColor: 'transparent',
                 },
             },
             icon: {
                 paddingLeft: 3.5,
                 paddingTop: 2,
+                [theme.breakpoints.up('tablet')]: {
+                    marginRight: 8,
+                },
             },
         }))(),
     };

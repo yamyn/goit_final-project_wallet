@@ -14,7 +14,7 @@ import CurrencyExchange from '../CurrencyExchange/CurrencyExchangeContainer';
 
 export default function NavBar() {
     const { classes, isNotMobile, isNotTablet } = useStyles();
-    const path = isNotMobile ? '/' : '/exchange';
+    const path = isNotMobile ? '/home' : '/exchange';
 
     return (
         <div className={classes.wrap}>
