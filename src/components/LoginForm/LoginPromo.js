@@ -1,27 +1,15 @@
 import React from 'react';
 import loginPreview from '../../img/LoginRegister/LoginPhoneExample.png';
-import Background from '../../img/LoginRegister/LoginBG.jpg';
 
-const promoStyle = {
-    width: '35vw',
-    height: '100%',
-    backgroundImage: `url(${Background})`,
-    backgroundSize: 'cover',
-    display: 'flex',
-    'justify-content': 'center',
-    'flex-direction': 'column',
-    'align-items': 'center',
-};
-
-const finAppParagr = {
-    color: '#fff',
-};
+import useStyles from './styles/LoginPromoStyles';
 
 const LoginPromo = () => {
+        const { classes } = useStyles();
+
     return (
-        <div style={promoStyle}>
+        <div className={classes.promoStyle}>
             <img src={loginPreview} alt="phone" width="280" />
-            <p style={finAppParagr}>Finance App</p>
+            <p className={classes.finAppParagr}>Finance App</p>
         </div>
     );
 };

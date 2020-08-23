@@ -4,7 +4,7 @@ import Input from '../Inputs/Input/Input';
 import CustomButton from '../Inputs/Button/CutomButton';
 
 import logo from '../../img/icons/logo.svg';
-import useStyles from './LoginFormStyles';
+import useStyles from './styles/LoginFormStyles';
 
 const LoginForm = () => {
     const { classes } = useStyles();

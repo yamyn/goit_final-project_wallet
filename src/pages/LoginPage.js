@@ -7,6 +7,8 @@ import LoginPromo from '../components/LoginForm/LoginPromo';
 import logo from '../img/icons/logo.svg';
 import Background from '../img/LoginRegister/LoginBG.jpg';
 
+import useTabletStyles from '../components/LoginForm/styles/LoginFormTabletStyles'
+
 const containerDesktop = {
     display: 'flex',
     'justify-content': 'center',
@@ -24,17 +26,16 @@ const containerTablet = {
     height: '100vh',
 };
 
-const headerMobileStyle = {
-    color: 'rgb(44, 44, 44)',
-    'font-size': '24px',
-    'line-height': '1.25',
-    'margin-left': '8px',
-};
+// const headerMobileStyle = {
+//     color: 'rgb(44, 44, 44)',
+//     'font-size': '24px',
+//     'line-height': '1.25',
+//     'margin-left': '8px',
+// };
 
 const containerFormDesktopStyle = {
     margin: 'auto',
     width: '550px',
-    // height: '390px',
     'box-shadow': '10px 17.321px 40px 0px rgba(112, 124, 130, 0.3)',
     display: 'flex',
     'flex-direction': 'column',
@@ -46,7 +47,6 @@ const containerFormDesktopStyle = {
 const containerFormTabletStyle = {
     margin: '0px auto 20px auto',
     width: '550px',
-    // height: '390px',
     'box-shadow': '10px 17.321px 40px 0px rgba(112, 124, 130, 0.3)',
     display: 'flex',
     'flex-direction': 'column',
@@ -71,6 +71,7 @@ const LoginPage = () => {
     const theme = useTheme();
     const upMobile = useMediaQuery(theme.breakpoints.up('mobile'));
     const upTablet = useMediaQuery(theme.breakpoints.up('tablet'));
+    const { classesTablet } = useTabletStyles();
 
     if (!upMobile && !upTablet) {
         return <LoginForm />;
@@ -78,11 +79,11 @@ const LoginPage = () => {
 
     if (!upTablet) {
         return (
-            <div style={containerTablet}>
-                <div style={containerFormTabletStyle}>
+            <div className={classesTablet.containerTablet}>
+                <div className={classesTablet.containerFormTabletStyle}>
                     <LoginForm />
                 </div>
-                <p style={finAppParagr}>Finance App</p>
+                <p className={classesTablet.finAppParagr}>Finance App</p>
             </div>
         );
     }
