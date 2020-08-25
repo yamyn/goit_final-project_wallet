@@ -1,6 +1,32 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
 export default createMuiTheme({
+    overrides: {
+        MuiPickersToolbar: {
+            toolbar: {
+                backgroundColor: '#284060',
+            },
+        },
+        MuiPickersDay: {
+            day: {
+                color: '#284060',
+            },
+            daySelected: {
+                backgroundColor: '#284060',
+            },
+            dayDisabled: {
+                color: '#284060',
+            },
+            current: {
+                color: '#284060',
+            },
+        },
+        MuiPickersModal: {
+            dialogAction: {
+                color: '#284060',
+            },
+        },
+    },
     breakpoints: {
         values: {
             mobile: 319,

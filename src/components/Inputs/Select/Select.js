@@ -3,10 +3,15 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import styles from './Select.module.css'
 
-const CustomSelect = ({ data }) => {
-    const [value, setValue] = React.useState('');
+const CustomSelect = ({ data, onClick, value }) => {
+    const isArr = Array.isArray(data);
+    const keys = isArr ? data : Object.keys(data);
+    const values = isArr ? data : Object.values(data);
+    const [newValue, setValue] = React.useState();
+    value = newValue || value;
 
     const handleChange = event => {
+        onClick(event.target.value);
         setValue(event.target.value);
     };
 
@@ -18,10 +23,15 @@ const CustomSelect = ({ data }) => {
             fullWidth
             variant="outlined"
             size="small"
+            displayEmpty
+            renderValue={(value => {
+                console.log(value);
+                return value
+            })}
         >
-            {data.map(item => (
-                <MenuItem value={item} key={item}>
-                    {item}
+            {keys.map((key, i) => (
+                <MenuItem value={values[i]} key={key}>
+                    {key}
                 </MenuItem>
             ))}
         </Select>

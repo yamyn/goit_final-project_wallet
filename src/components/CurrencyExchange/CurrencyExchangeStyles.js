@@ -5,7 +5,7 @@ export default count => {
     const mainMarg = 290;
     const top = mainMarg + count * 50;
     const theme = useTheme();
-    const laptop = theme.breakpoints.between('319', '1023');
+    const laptop = theme.breakpoints.between('740', '1023');
     const isLaptop = useMediaQuery(laptop);
 
     return {
