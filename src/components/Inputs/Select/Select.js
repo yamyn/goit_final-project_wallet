@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import styles from './Select.module.css'
+import styles from './Select.module.css';
 
 const CustomSelect = ({ data }) => {
     const [value, setValue] = React.useState('');

@@ -3,6 +3,9 @@ import { CSSTransition } from 'react-transition-group';
 import PropTypes from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { Container } from '@material-ui/core';
+import FabBtn from '../Inputs/Fab/Fab';
+import SimpleModal from '../Modal/Modal';
+import TransactionForm from '../TransactionForm/TransactionForm';
 import popTransition from '../../transitions/pop.module.css';
 
 // Pages
@@ -55,6 +58,10 @@ export default class App extends Component {
                 >
                     <Alert message={alert} />
                 </CSSTransition>
+                <SimpleModal>
+                    <TransactionForm />
+                </SimpleModal>
+                <FabBtn />
             </Container>
         );
     }
