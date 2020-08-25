@@ -5,7 +5,7 @@
 /* eslint-disable react/no-this-in-sfc */
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
-
+import { invert } from 'lodash';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Pie } from 'react-chartjs-2';
@@ -13,6 +13,13 @@ import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import { TextField } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Divider from '@material-ui/core/Divider';
+
 import Select from '../Inputs/Select/Select';
 
 import useStyles from './DiagramStyles';
@@ -23,20 +30,21 @@ const yearArray = Array.from(rangeYear.by('year', { excludeEnd: false }))
     .map(time => time.format('yyyy'))
     .reverse();
 
-const monrthArray = {
-    'Январь': '01',
-    'Февраль': '02',
-    'Март': '03',
-    'Апрель': '04',
-    'Май': '05',
-    'Июнь': '06',
-    'Июль': '07',
-    'Август': '08',
-    'Сентябрь': '09',
-    'Октябрь': '10',
-    'Ноябрь': '11',
-    'Декабрь': '12',
+const monthEnum = {
+    Январь: '01',
+    Февраль: '02',
+    Март: '03',
+    Апрель: '04',
+    Май: '05',
+    Июнь: '06',
+    Июль: '07',
+    Август: '08',
+    Сентябрь: '09',
+    Октябрь: '10',
+    Ноябрь: '11',
+    Декабрь: '12',
 };
+const invMonth = invert(monthEnum);
 
 const categoryColor = {
     'Основные расходы': '#ecb22a',
@@ -65,21 +73,19 @@ const getChart = statistic => {
 const statistic = [12, 19, 3, 5, 2, 3];
 
 export default function Diagram() {
-    const { classes, isNotMobile, chartSize } = useStyles();
-    const [selectedDate, handleDateChange] = useState(new Date());
+    const { classes, isNotMobile } = useStyles();
 
-    const onClick = (res) => {
-
-    };
+    const onClick = res => {};
+    const currentMonth = invMonth[moment().format('MM')];
 
     return (
         <>
             <div className={classes.root}>
-                <div>
+                <div className={classes.chartWrap}>
                     <Pie
                         data={getChart(statistic)}
-                        width={chartSize}
-                        height={chartSize}
+                        width={336}
+                        height={336}
                         options={{
                             maintainAspectRatio: false,
                             legend: {
@@ -93,13 +99,52 @@ export default function Diagram() {
                         }}
                     />
                 </div>
-                <div>
-                    <Select data={yearArray} onClick={onClick} value="Год" />
+                <div className={classes.pickerWrap}>
                     <Select
-                        data={monrthArray}
+                        data={yearArray}
                         onClick={onClick}
-                        value="Месяц"
+                        initValue={yearArray[0]}
+                        className={classes.picker}
                     />
+                    <Select
+                        data={Object.keys(monthEnum)}
+                        onClick={onClick}
+                        initValue={currentMonth}
+                        className={classes.picker}
+                    />
+                </div>
+            </div>
+            <div>
+                <Table aria-label="diagram table">
+                    <TableHead>
+                        <TableRow className={classes.thead}>
+                            <TableCell />
+                            <TableCell>Категория</TableCell>
+                            <TableCell>Сума</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {Object.keys(categoryColor).map(category => (
+                            <TableRow>
+                                <TableCell>
+                                    <div
+                                        className={classes.colorPick}
+                                        style={{
+                                            backgroundColor:
+                                                categoryColor[category],
+                                        }}
+                                    ></div>
+                                </TableCell>
+                                <TableCell>{category}</TableCell>
+                                <TableCell>1000</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+                <Divider orientation="horizontal" />
+                <div className={classes.balanceWrap}>
+                    <p>Расходы:</p>
+                    <p>Доходы:</p>
                 </div>
             </div>
         </>
