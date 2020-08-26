@@ -9,6 +9,8 @@ import {
     loadExchangeError,
 } from './exchangeActions';
 
+const fixTo100 = number => Math.round(number * 100) / 100;
+
 export default () => (dispatch, getState) => {
     const stateTime = moment(getTime(getState()), 'hh-mm');
     const condTime = moment().subtract(5, 'm');
@@ -20,7 +22,7 @@ export default () => (dispatch, getState) => {
         .then(response => {
             const currencies = {};
             response.data.forEach(({ ccy, buy, sale }) => {
-                currencies[ccy] = { buy, sale };
+                currencies[ccy] = { buy: fixTo100(buy), sale: fixTo100(sale) };
             });
 
             dispatch(loadExchangeSuccess(currencies));

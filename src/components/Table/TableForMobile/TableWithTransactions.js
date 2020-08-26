@@ -19,7 +19,6 @@ const StyledTableRow = withStyles({
             backgroundColor: '#f3f6f6',
         },
         borderLeft: '4px solid',
-        borderColor: ' #669999',
     },
 })(TableRow);
 
@@ -31,7 +30,7 @@ const StyledTable = withStyles({
     },
 })(Table);
 
-const TableWithTransactions = ({ transactions }) => {
+const TableWithTransactions = ({ transactions, colors }) => {
     return (
         <div>
             {transactions.map(transaction => (
@@ -40,7 +39,9 @@ const TableWithTransactions = ({ transactions }) => {
                     key={transaction._id}
                 >
                     <TableBody>
-                        <StyledTableRow>
+                        <StyledTableRow
+                            style={{ borderColor: colors[transaction.type] }}
+                        >
                             <StyledTableCell align="center">
                                 Дата
                             </StyledTableCell>
@@ -49,15 +50,22 @@ const TableWithTransactions = ({ transactions }) => {
                             </StyledTableCell>
                         </StyledTableRow>
 
-                        <StyledTableRow>
+                        <StyledTableRow
+                            style={{ borderColor: colors[transaction.type] }}
+                        >
                             <StyledTableCell align="center">
                                 Тип
                             </StyledTableCell>
-                            <StyledTableCell align="center">
+                            <StyledTableCell
+                                align="center"
+                                style={{ color: colors[transaction.type] }}
+                            >
                                 {transaction.type}
                             </StyledTableCell>
                         </StyledTableRow>
-                        <StyledTableRow>
+                        <StyledTableRow
+                            style={{ borderColor: colors[transaction.type] }}
+                        >
                             <StyledTableCell align="center">
                                 Категория
                             </StyledTableCell>
@@ -65,7 +73,9 @@ const TableWithTransactions = ({ transactions }) => {
                                 {transaction.category}
                             </StyledTableCell>
                         </StyledTableRow>
-                        <StyledTableRow>
+                        <StyledTableRow
+                            style={{ borderColor: colors[transaction.type] }}
+                        >
                             <StyledTableCell align="center">
                                 Комментарий
                             </StyledTableCell>
@@ -73,15 +83,22 @@ const TableWithTransactions = ({ transactions }) => {
                                 {transaction.comments}
                             </StyledTableCell>
                         </StyledTableRow>
-                        <StyledTableRow>
+                        <StyledTableRow
+                            style={{ borderColor: colors[transaction.type] }}
+                        >
                             <StyledTableCell align="center">
                                 Сумма
                             </StyledTableCell>
-                            <StyledTableCell align="center">
+                            <StyledTableCell
+                                align="center"
+                                style={{ color: colors[transaction.type] }}
+                            >
                                 {transaction.amount}
                             </StyledTableCell>
                         </StyledTableRow>
-                        <StyledTableRow>
+                        <StyledTableRow
+                            style={{ borderColor: colors[transaction.type] }}
+                        >
                             <StyledTableCell align="center">
                                 Баланс
                             </StyledTableCell>

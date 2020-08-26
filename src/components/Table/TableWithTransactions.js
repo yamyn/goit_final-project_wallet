@@ -1,6 +1,6 @@
 import React from 'react';
 // Material UI
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, useTheme } from '@material-ui/core/styles';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -12,35 +12,59 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 // components
 import TableWithTransactionsForMobile from './TableForMobile/TableWithTransactions';
 
-// styles
-import styles from './TableWithTransactions.module.css';
-
 const StyledTableCell = withStyles({
-    head: { backgroundColor: '#ffffff', textTransform: 'capitalize' },
+    head: { backgroundColor: '#fff', textTransform: 'capitalize' },
     body: {
         fontSize: 13,
     },
 })(TableCell);
 
-const StyledTableRow = withStyles({
-    root: {
-        '&:nth-of-type(odd)': {
-            backgroundColor: '#f3f6f6',
+const isStyledTableRow = (isDesc) => {
+    if (isDesc) {
+        return TableRow;
+    }
+
+    return withStyles({
+        root: {
+            '&:nth-of-type(odd)': {
+                backgroundColor: '#f3f6f6',
+            },
         },
-    },
-})(TableRow);
+    })(TableRow);
+};
+
+const colorType = {
+    '-': '#e20505',
+    '+': '#25a805',
+};
 
 const TableWithTransactions = ({ transactions }) => {
-    const isMobile = useMediaQuery('(max-width:480px)');
+    const theme = useTheme();
+    const isMobile = useMediaQuery(
+        theme.breakpoints.down(theme.breakpoints.values.tablet),
+    );
+    const isNotTablet = useMediaQuery(theme.breakpoints.up('desktop'));
+    const wrapStyles = !isNotTablet
+        ? {}
+        : {
+            flex: '0 0 70%',
+            backgroundColor: theme.palette.background.primary,
+            boxShadow: '-2px -2px 2px rgba(0,0,0,0.1)',
+        };
+
+    const StyledTableRow = isStyledTableRow(isNotTablet);
 
     {
         if (isMobile)
             return (
-                <TableWithTransactionsForMobile transactions={transactions} />
+                <TableWithTransactionsForMobile
+                    transactions={transactions}
+                    colors={colorType}
+                />
             );
     }
     return (
-        <div className={styles.tableContainer}>
+        <div style={wrapStyles}>
             <Table aria-label="transation table">
                 <TableHead>
                     <TableRow>
@@ -62,7 +86,10 @@ const TableWithTransactions = ({ transactions }) => {
                             <StyledTableCell component="th" scope="row">
                                 {transaction.date}
                             </StyledTableCell>
-                            <StyledTableCell align="center">
+                            <StyledTableCell
+                                align="center"
+                                style={{ color: colorType[transaction.type] }}
+                            >
                                 {transaction.type}
                             </StyledTableCell>
                             <StyledTableCell align="center">
@@ -71,7 +98,10 @@ const TableWithTransactions = ({ transactions }) => {
                             <StyledTableCell align="center">
                                 {transaction.comments}
                             </StyledTableCell>
-                            <StyledTableCell align="center">
+                            <StyledTableCell
+                                align="center"
+                                style={{ color: colorType[transaction.type] }}
+                            >
                                 {transaction.amount}
                             </StyledTableCell>
                             <StyledTableCell align="center">

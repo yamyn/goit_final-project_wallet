@@ -13,11 +13,16 @@ export default () => {
                 width: '95%',
                 margin: '0 auto 20px',
                 backgroundColor: theme.palette.background.navPrimary,
-                borderRadius: 8,
+                borderRadius: 5,
                 textAlign: 'center',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
+                [theme.breakpoints.up('desktop')]: {
+                    backgroundColor: theme.palette.background.secondary,
+                    marginBottom: 30,
+                    boxShadow: '4px 4px 15px rgba(0,0,0,0.3)',
+                }
             },
             monitor: {
                 margin: 0,

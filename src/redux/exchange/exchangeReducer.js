@@ -5,7 +5,7 @@ import { loadExchangeSuccess } from './exchangeActions';
 const currencies = createReducer(null, {
     [loadExchangeSuccess]: (state, action) => action.payload.currencies,
 });
-const time = createReducer(moment().subtract(1, 'd').format('hh-mm'), {
+const time = createReducer(moment().subtract(1, 'h').format('hh-mm'), {
     [loadExchangeSuccess]: () => moment().format('hh-mm'),
 });
 const exchangeReducer = combineReducers({
