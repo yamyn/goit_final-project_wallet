@@ -6,10 +6,9 @@ import CustomButton from '../Inputs/Button/CutomButton';
 import styles from './TransactionForm.module.css';
 
 const TransactionForm = () => {
-
     return (
         <div className={styles.container}>
-            <h3>Добавить транзакцию</h3>
+            <h3>ДОБАВИТЬ ТРАНЗАКЦИЮ</h3>
             <CustomSelect data={[1, 2, 3, 4]} />
             <div className={styles.row}>
                 <Input name="number" placeholder="0.00" type="number" />

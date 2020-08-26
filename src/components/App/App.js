@@ -3,9 +3,6 @@ import { CSSTransition } from 'react-transition-group';
 import PropTypes from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { Container } from '@material-ui/core';
-import FabBtn from '../Inputs/Fab/Fab';
-import SimpleModal from '../Modal/Modal';
-import TransactionForm from '../TransactionForm/TransactionForm';
 import popTransition from '../../transitions/pop.module.css';
 
 // Pages
@@ -14,6 +11,7 @@ import HomePage from '../../pages/HomePage';
 import LoginPage from '../../pages/LoginPage';
 import SignUpPage from '../../pages/SignupPage';
 import ExchangeMobilePage from '../../pages/ExchangeMobilePage';
+import AddTransMobilePage from '../../pages/AddTransMobilePage';
 
 import ProtectedRoute from '../ProtectedRoute';
 import Alert from '../Alert/Alert';
@@ -43,6 +41,11 @@ export default class App extends Component {
                         component={DiagramPage}
                         redirectTo="/login"
                     />
+                    <ProtectedRoute
+                        path="/add-transaction"
+                        component={AddTransMobilePage}
+                        redirectTo="/login"
+                    />
 
                     <ProtectedRoute
                         path="/home"
@@ -63,10 +66,6 @@ export default class App extends Component {
                 >
                     <Alert message={alert} />
                 </CSSTransition>
-                <SimpleModal>
-                    <TransactionForm />
-                </SimpleModal>
-                <FabBtn />
             </Container>
         );
     }

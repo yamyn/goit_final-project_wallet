@@ -11,7 +11,6 @@ export default () => {
         isNotTablet,
         classes: makeStyles(() => ({
             mainWrap: {
-
                 [theme.breakpoints.up('desktop')]: {
                     width: '90%',
                     margin: '0 auto',
@@ -19,6 +18,12 @@ export default () => {
                     justifyContent: 'space-between',
                     backgroundColor: '#f0f3f3',
                     minHeight: '1vh',
+                },
+            },
+            root: {
+                position: 'relative',
+                [theme.breakpoints.up('desktop')]: {
+                    // position: 'relative',
                 },
             },
         }))(),

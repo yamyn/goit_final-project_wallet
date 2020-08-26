@@ -1,29 +1,52 @@
 import React from 'react';
 import Fab from '@material-ui/core/Fab';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import { useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { showModal } from '../../../redux/app/appAction';
 
-const useStyles = makeStyles(theme => ({
-    absolute: {
-        position: 'absolute',
-        bottom: theme.spacing(2),
-        right: theme.spacing(3),
-    },
-}));
+const useStyles = curTheme =>
+    makeStyles(theme => ({
+        absolute: {
+            position: 'fixed',
+            bottom: theme.spacing(2),
+            left: '50%',
+            transform: 'translateX(-50%)',
+            [theme.breakpoints.up('tablet')]: {
+                position: 'fixed',
+                left: '93%',
+                bottom: theme.spacing(3),
+            },
+            [theme.breakpoints.up('desktop')]: {
+                bottom: theme.spacing(9),
+            },
+        },
+        link: { color: theme.palette.primary.iconActive, display: 'block', paddingTop: 7 },
+    }))(curTheme);
 
 const FabBtn = () => {
-    const classes = useStyles();
+    const theme = useTheme();
+    const isNotMobile = useMediaQuery(theme.breakpoints.up('tablet'));
+    const classes = useStyles(theme);
     const dispatch = useDispatch();
+    const onClick = isNotMobile ? () => dispatch(showModal()) : () => '';
 
     return (
-        <Fab
-            onClick={() => dispatch(showModal())}
-            color="primary"
-            className={classes.absolute}
-        >
-            <AddIcon />
+        <Fab onClick={onClick} color="primary" className={classes.absolute}>
+            {isNotMobile ? (
+                <AddIcon />
+            ) : (
+                    <NavLink
+                        to="/add-transaction"
+                        exact
+                        activeClassName={classes.active}
+                        className={classes.link}
+                    >
+                        <AddIcon />
+                    </NavLink>)}
+
         </Fab>
     );
 };
