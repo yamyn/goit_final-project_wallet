@@ -1,66 +1,44 @@
 import React from 'react';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import Input from '../components/Inputs/Input/Input';
-import RadioButton from '../components/Inputs/RadioButton/RadioButton';
-import CustomSelect from '../components/Inputs/Select/Select';
-import CustomButton from '../components/Inputs/Button/CutomButton';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
 
-import withAuthRedirect from '../components/hoc/withAuthRedirect';
+import LoginForm from '../components/LoginForm/LoginForm';
+import LoginPromo from '../components/LoginForm/LoginPromo';
 
-const LoginPage = () => (
-    <>
-        <h1>Login page!</h1>
-        <Input
-            withIcon
-            name="password"
-            placeholder="Password"
-            type="password"
-            errorText="Some error"
-        />
-        <Input
-            withIcon
-            name="email"
-            placeholder="E-mail"
-            type="email"
-        />
-        <Input
-            withIcon
-            name="name"
-            placeholder="Name"
-        />
-        <Input
-            name="number"
-            placeholder="0.00"
-            type="date"
-            errorText="Required"
-        />
-        <Input
-            name="number"
-            placeholder="0.00"
-            type="number"
-        />
-        <Input
-            name="textarea"
-            placeholder="Comment"
-            type="textarea"
-        />
-        <RadioGroup defaultValue="debit">
-            <FormControlLabel
-                value="debit"
-                control={<RadioButton />}
-                label="Доход"
-            />
-            <FormControlLabel
-                value="credit"
-                control={<RadioButton />}
-                label="Расход"
-            />
-        </RadioGroup>
-        <CustomSelect data={[1, 2, 3, 4]} />
-        <CustomButton title="Добавить" type="main" />
-        <CustomButton title="Регистрация" type="secondary" />
-    </>
-);
+import useTabletStyles from '../components/LoginForm/styles/LoginFormTabletStyles';
+import useDesktopStyles from '../components/LoginForm/styles/LoginFormDesktopStyles';
 
-export default withAuthRedirect(LoginPage);
+const LoginPage = () => {
+    const theme = useTheme();
+    const upMobile = useMediaQuery(theme.breakpoints.up('mobile'));
+    const upTablet = useMediaQuery(theme.breakpoints.up('tablet'));
+    const { classesTablet } = useTabletStyles();
+    const { classesDesktop } = useDesktopStyles();
+
+    if (!upMobile && !upTablet) {
+        return <LoginForm />;
+    }
+
+    if (!upTablet) {
+        return (
+            <div className={classesTablet.containerTablet}>
+                <div className={classesTablet.containerFormTabletStyle}>
+                    <LoginForm />
+                </div>
+                <p className={classesTablet.finAppParagr}>Finance App</p>
+            </div>
+        );
+    }
+
+    return (
+        <div className={classesDesktop.containerDesktop}>
+            <LoginPromo />
+
+            <div className={classesDesktop.containerFormDesktopStyle}>
+                <LoginForm />
+            </div>
+        </div>
+    );
+};
+
+export default LoginPage;

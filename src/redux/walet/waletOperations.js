@@ -12,6 +12,7 @@ import {
     addTransactionSuccess,
     addTransactionError,
 } from './waletActions';
+
 const addPrefix = userId => `/finance/?userId=${userId}`;
 
 export const fetchTransactions = () => (dispatch, getState) => {

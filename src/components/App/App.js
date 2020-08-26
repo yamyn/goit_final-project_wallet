@@ -16,7 +16,6 @@ import SignUpPage from '../../pages/SignupPage';
 import ExchangeMobilePage from '../../pages/ExchangeMobilePage';
 
 import ProtectedRoute from '../ProtectedRoute';
-
 import Alert from '../Alert/Alert';
 
 export default class App extends Component {
