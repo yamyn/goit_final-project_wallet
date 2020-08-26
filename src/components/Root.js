@@ -12,7 +12,8 @@ const Root = () => (
     <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
             <Router>
-                <ThemeProvider theme={theme}>
+                <ThemeProvider theme={theme
+                }>
                     <Route component={App} />
                 </ThemeProvider>
             </Router>

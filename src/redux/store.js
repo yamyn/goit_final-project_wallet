@@ -6,6 +6,7 @@ import waletReducer from './walet/waletReducer';
 import alertReducer from './alert/alertReducer';
 import sessionReducer from './session/sessionReducer';
 import exchangeReducer from './exchange/exchangeReducer';
+import appReducer from './app/appReducer';
 
 import validation from './middleware/validation';
 import errorHandler from './middleware/errorHandler';
@@ -23,6 +24,7 @@ export const store = configureStore({
         alert: alertReducer,
         session: persistedReducer,
         exchange: exchangeReducer,
+        app: appReducer,
     },
     middleware: [...getDefaultMiddleware(), errorHandler, validation],
 });

@@ -1,14 +1,11 @@
 import { connect } from 'react-redux';
 import { getCurrencies } from '../../redux/exchange/exchangeSelectors';
-import fetchExchange from '../../redux/exchange/exchangeOperations';
+import { getTransCount } from '../../redux/walet/waletSelectors';
 import CurrencyExchange from './CurrencyExchange';
 
 const mapStateToProps = state => ({
     currencies: getCurrencies(state),
+    rowCount: getTransCount(state),
 });
 
-const mapDispatchToProps = {
-    fetchExchange,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(CurrencyExchange);
+export default connect(mapStateToProps)(CurrencyExchange);
