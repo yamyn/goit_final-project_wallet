@@ -73,81 +73,96 @@ const getChart = statistic => {
 const statistic = [12, 19, 3, 5, 2, 3];
 
 export default function Diagram() {
-    const { classes, isNotMobile } = useStyles();
+    const { classes, isNotMobile, isLaptop } = useStyles();
 
-    const onClick = res => {};
+    const onClick = res => { };
     const currentMonth = invMonth[moment().format('MM')];
 
     return (
-        <>
-            <div className={classes.root}>
-                <div className={classes.chartWrap}>
-                    <Pie
-                        data={getChart(statistic)}
-                        width={336}
-                        height={336}
-                        options={{
-                            maintainAspectRatio: false,
-                            legend: {
-                                display: false,
-                            },
-                            tooltips: {
-                                enabled: true,
-                                label: Object.keys(categoryColor),
-                                displayColors: false,
-                            },
-                        }}
-                    />
+        <div className={classes.container}>
+            {isNotMobile && (
+                <div className={classes.chartHead}>
+                    <p className={classes.chartText}>СТАТИСТИКА</p>
                 </div>
-                <div className={classes.pickerWrap}>
-                    <Select
-                        data={yearArray}
-                        onClick={onClick}
-                        initValue={yearArray[0]}
-                        className={classes.picker}
-                    />
-                    <Select
-                        data={Object.keys(monthEnum)}
-                        onClick={onClick}
-                        initValue={currentMonth}
-                        className={classes.picker}
-                    />
+            )}
+            <div className={classes.main}>
+                <div className={classes.root}>
+                    <div className={classes.chartWrap}>
+                        <Pie
+                            data={getChart(statistic)}
+                            width={336}
+                            height={336}
+                            options={{
+                                maintainAspectRatio: false,
+                                legend: {
+                                    display: false,
+                                },
+                                tooltips: {
+                                    enabled: true,
+                                    label: Object.keys(categoryColor),
+                                    displayColors: false,
+                                },
+                            }}
+                        />
+                    </div>
+                    <div className={classes.pickerWrap}>
+                        <Select
+                            data={yearArray}
+                            onClick={onClick}
+                            initValue={yearArray[0]}
+                            className={classes.picker}
+                        />
+                        <Select
+                            data={Object.keys(monthEnum)}
+                            onClick={onClick}
+                            initValue={currentMonth}
+                            className={classes.picker}
+                        />
+                    </div>
                 </div>
-            </div>
-            <div>
-                <Table aria-label="diagram table">
-                    <TableHead>
-                        <TableRow className={classes.thead}>
-                            <TableCell />
-                            <TableCell>Категория</TableCell>
-                            <TableCell>Сума</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {Object.keys(categoryColor).map(category => (
-                            <TableRow>
-                                <TableCell>
-                                    <div
-                                        className={classes.colorPick}
-                                        style={{
-                                            backgroundColor:
-                                                categoryColor[category],
-                                        }}
-                                    ></div>
+                <div className={classes.tableWrap}>
+                    <Table aria-label="diagram table">
+                        {!isLaptop && (
+                            <TableHead>
+                                <TableRow className={classes.thead}>
+                                    <TableCell className={classes.hCeil} />
+                                    <TableCell className={classes.hCeil}>Категория</TableCell>
+                                    <TableCell className={classes.hCeil}>Сума</TableCell>
+                                </TableRow>
+                            </TableHead>
+                        )}
+                        <TableBody className={classes.tbody}>
+                            {Object.keys(categoryColor).map(category => (
+                                <TableRow className={classes.trow}>
+                                    <TableCell className={classes.ceil}>
+                                        <div
+                                            className={classes.colorPick}
+                                            style={{
+                                                backgroundColor:
+                                                    categoryColor[category],
+                                            }}
+                                        />
+                                    </TableCell>
+                                    <TableCell className={classes.ceil}>
+                                        {category}
+                                    </TableCell>
+                                    <TableCell
+                                        className={`${classes.ceil} ${classes.amountCeil}`}
+                                    >
+                                        1000
                                 </TableCell>
-                                <TableCell>{category}</TableCell>
-                                <TableCell>1000</TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-                <Divider orientation="horizontal" />
-                <div className={classes.balanceWrap}>
-                    <p>Расходы:</p>
-                    <p>Доходы:</p>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                    <Divider orientation="horizontal" />
+                    <div className={classes.balanceWrap}>
+                        <p>Расходы:</p>
+                        <p>Доходы:</p>
+                    </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 

@@ -19,13 +19,19 @@ const StyledTableCell = withStyles({
     },
 })(TableCell);
 
-const StyledTableRow = withStyles({
-    root: {
-        '&:nth-of-type(odd)': {
-            backgroundColor: '#f3f6f6',
+const isStyledTableRow = (isDesc) => {
+    if (isDesc) {
+        return TableRow;
+    }
+
+    return withStyles({
+        root: {
+            '&:nth-of-type(odd)': {
+                backgroundColor: '#f3f6f6',
+            },
         },
-    },
-})(TableRow);
+    })(TableRow);
+};
 
 const colorType = {
     '-': '#e20505',
@@ -37,7 +43,17 @@ const TableWithTransactions = ({ transactions }) => {
     const isMobile = useMediaQuery(
         theme.breakpoints.down(theme.breakpoints.values.tablet),
     );
-    console.log('isMob: ', isMobile);
+    const isNotTablet = useMediaQuery(theme.breakpoints.up('desktop'));
+    const wrapStyles = !isNotTablet
+        ? {}
+        : {
+            flex: '0 0 70%',
+            backgroundColor: theme.palette.background.primary,
+            boxShadow: '-2px -2px 2px rgba(0,0,0,0.1)',
+        };
+
+    const StyledTableRow = isStyledTableRow(isNotTablet);
+
     {
         if (isMobile)
             return (
@@ -48,7 +64,7 @@ const TableWithTransactions = ({ transactions }) => {
             );
     }
     return (
-        <div>
+        <div style={wrapStyles}>
             <Table aria-label="transation table">
                 <TableHead>
                     <TableRow>

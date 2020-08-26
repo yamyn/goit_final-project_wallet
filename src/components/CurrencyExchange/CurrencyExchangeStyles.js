@@ -25,6 +25,12 @@ export default count => {
                     marginBottom: 30,
                     boxShadow: '14px 14px 15px rgba(0,0,0,0.1)',
                 },
+                [theme.breakpoints.up('desktop')]: {
+                    boxShadow: '4px 4px 15px rgba(0,0,0,0.3)',
+                    width: '95%',
+                    margin: '0 auto',
+                    height: 400,
+                },
             },
             ceilHead: {
                 border: 0,

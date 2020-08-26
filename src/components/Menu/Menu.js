@@ -12,7 +12,7 @@ import exchange from '../../img/icons/currency exchange/baseline-attach_money-24
 
 // eslint-disable-next-line react/prop-types
 export default function Menu() {
-    const { classes, isNotMobile } = useStyles();
+    const { classes, isNotMobile, isDesktop } = useStyles();
     return (
         <>
             <Paper elevation={3} />
@@ -30,11 +30,13 @@ export default function Menu() {
                                 <span className={classes.linkText}>
                                     Главная
                                 </span>
-                                <Divider
-                                    orientation="vertical"
-                                    flexItem
-                                    className={classes.divider}
-                                />
+                                {!isDesktop && (
+                                    <Divider
+                                        orientation="vertical"
+                                        flexItem
+                                        className={classes.divider}
+                                    />
+                                )}
                             </>
                         )}
                     </NavLink>
@@ -52,29 +54,35 @@ export default function Menu() {
                                 <span className={classes.linkText}>
                                     Статистика
                                 </span>
-                                <Divider
-                                    orientation="vertical"
-                                    flexItem
-                                    className={classes.divider}
-                                />
+                                {!isDesktop && (
+                                    <Divider
+                                        orientation="vertical"
+                                        flexItem
+                                        className={classes.divider}
+                                    />
+                                )}
+
                             </>
                         )}
                     </NavLink>
                 </ListItem>
-                <ListItem className={classes.item}>
-                    {isNotMobile ? (
-                        <span className={classes.balance}>Баланс: 3000</span>
-                    ) : (
-                        <NavLink
-                            to="/exchange"
-                            exact
-                            activeClassName={classes.active}
-                            className={classes.link}
-                        >
-                            <ReactSVG src={exchange} className={classes.icon} />
-                        </NavLink>
-                    )}
-                </ListItem>
+                {!isDesktop && (
+                    <ListItem className={classes.item}>
+                        {isNotMobile ? (
+                            <span className={classes.balance}>Баланс: 3000</span>
+                        ) : (
+                                <NavLink
+                                    to="/exchange"
+                                    exact
+                                    activeClassName={classes.active}
+                                    className={classes.link}
+                                >
+                                    <ReactSVG src={exchange} className={classes.icon} />
+                                </NavLink>
+                            )}
+                    </ListItem>
+                )}
+
             </List>
             <Paper />
         </>

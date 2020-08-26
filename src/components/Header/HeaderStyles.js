@@ -10,6 +10,11 @@ export default () => {
         classes: makeStyles(() => ({
             root: {
                 flexGrow: 1,
+                [theme.breakpoints.up('desktop')]: {
+                    boxShadow: '0 18px 20px rgba(0,0,0,0.1)',
+                    marginBottom: 50,
+                },
+
             },
             headerWrap: {
                 minHeight: 40,
