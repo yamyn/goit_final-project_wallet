@@ -1,5 +1,6 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Modal from '@material-ui/core/Modal';
 import { useSelector, useDispatch } from 'react-redux';
 import { hideModal } from '../../redux/app/appAction';
@@ -20,20 +21,22 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const SimpleModal = ({ children }) => {
+    const theme = useTheme();
+    const isNotMobile = useMediaQuery(theme.breakpoints.up('tablet'));
     const classes = useStyles();
     const dispatch = useDispatch();
     const isModal = useSelector(isModalSelector);
 
+
     return (
         <Modal
             onClose={() => dispatch(hideModal())}
+            disableBackdropClick={!isNotMobile}
             aria-labelledby="simple-modal-title"
             aria-describedby="simple-modal-description"
             open={isModal}
         >
-            <div className={classes.paper}>
-                {children}
-            </div>
+            <div className={classes.paper}>{children}</div>
         </Modal>
     );
 };
