@@ -36,7 +36,7 @@ export default createMuiTheme({
     },
     palette: {
         primary: {
-            main: '#a52a2a',
+            main: '#e56100',
             secondary: '#828fa1',
             iconActive: '#fff',
             tableSecondary: '#f3f6f6',
