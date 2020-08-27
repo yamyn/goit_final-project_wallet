@@ -1,12 +1,13 @@
 import React from 'react';
 import { useFormik } from 'formik';
+import { Link } from 'react-router-dom';
+
 import Input from '../Inputs/Input/Input';
 import CustomButton from '../Inputs/Button/CutomButton';
-
 import logo from '../../img/icons/logo.svg';
 import useStyles from './styles/LoginFormStyles';
 
-const LoginForm = ({ onLogin }) => {
+const LoginForm = ({ onLogin, diffrentPass }) => {
     const { classes } = useStyles();
 
     const formik = useFormik({
@@ -14,7 +15,12 @@ const LoginForm = ({ onLogin }) => {
             email: '',
             password: '',
         },
+
         onSubmit: values => {
+            const notProperty = Object.keys(values).find(key => !values[key]);
+            if (notProperty) {
+                return diffrentPass(`${notProperty} is required!`);
+            }
             onLogin(values);
         },
     });
@@ -46,7 +52,9 @@ const LoginForm = ({ onLogin }) => {
                 />
                 <CustomButton title="Войти" type="submit" />
             </form>
-            <a href="/register">Регистрация</a>
+            <Link to="/register" className={classes.link}>
+                Регистрация
+            </Link>
         </div>
     );
 };

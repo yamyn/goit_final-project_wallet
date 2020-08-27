@@ -1,6 +1,8 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 export default () => {
+    const theme = useTheme();
+
     return {
         classes: makeStyles(() => ({
             loginFormContainer: {
@@ -35,6 +37,10 @@ export default () => {
                 alignItems: `center`,
                 fontFamily: `Arial, Helvetica, sansSerif`,
             },
+            link: {
+                textDecoration: 'none',
+                color: theme.palette.primary.black,
+            }
         }))(),
     };
 };

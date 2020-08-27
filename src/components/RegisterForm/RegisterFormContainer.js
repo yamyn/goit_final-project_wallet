@@ -1,19 +1,12 @@
 import { connect } from 'react-redux';
 import { signup } from '../../redux/session/sessionOperations';
+import { diffrentPass } from '../../redux/session/sessionAction';
 
-import {
-    getUser,
-    getIsAuthenticated,
-} from '../../redux/session/sessionSelectors';
 import RegisterForm from './RegisterForm';
-
-const mapStateToProps = state => ({
-    user: getUser(state),
-    authenticated: getIsAuthenticated(state),
-});
 
 const mapDispatchToProps = {
     onSignUp: credentials => signup(credentials),
+    diffrentPass,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm);
+export default connect(null, mapDispatchToProps)(RegisterForm);

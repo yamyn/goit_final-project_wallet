@@ -40,6 +40,7 @@ export default createMuiTheme({
             secondary: '#828fa1',
             iconActive: '#fff',
             tableSecondary: '#f3f6f6',
+            black: '#010101',
         },
         background: {
             primary: '#fff',

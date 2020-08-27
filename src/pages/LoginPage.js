@@ -11,16 +11,16 @@ import useDesktopStyles from '../components/LoginForm/styles/LoginFormDesktopSty
 
 const LoginPage = () => {
     const theme = useTheme();
-    const upMobile = useMediaQuery(theme.breakpoints.up('mobile'));
-    const upTablet = useMediaQuery(theme.breakpoints.up('tablet'));
+    const isNotMobile = useMediaQuery(theme.breakpoints.up('tablet'));
+    const isNotTablet = useMediaQuery(theme.breakpoints.up('desktop'));
     const { classesTablet } = useTabletStyles();
     const { classesDesktop } = useDesktopStyles();
 
-    if (!upMobile && !upTablet) {
+    if (!isNotMobile) {
         return <LoginForm />;
     }
 
-    if (!upTablet) {
+    if (isNotMobile && !isNotTablet) {
         return (
             <div className={classesTablet.containerTablet}>
                 <div className={classesTablet.containerFormTabletStyle}>
