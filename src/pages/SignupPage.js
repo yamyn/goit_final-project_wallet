@@ -3,11 +3,12 @@ import React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 
-import RegisterForm from '../components/RegisterForm/RegisterForm';
+import RegisterForm from '../components/RegisterForm/RegisterFormContainer';
 import LoginPromo from '../components/LoginForm/LoginPromo';
 
 import useTabletStyles from '../components/RegisterForm/styles/RegisterFormTabletStyles';
 import useDesktopStyles from '../components/RegisterForm/styles/RegisterFormDesktopStyles';
+import withAuthRedirect from '../components/hoc/withAuthRedirect';
 
 const SignupPage = () => {
     const theme = useTheme();
@@ -67,4 +68,4 @@ const SignupPage = () => {
 //         <RegisterForm />
 //     </div>
 // );
-export default SignupPage;
+export default withAuthRedirect(SignupPage);

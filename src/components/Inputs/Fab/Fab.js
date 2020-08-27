@@ -3,7 +3,7 @@ import Fab from '@material-ui/core/Fab';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { showModal } from '../../../redux/app/appAction';
 
@@ -38,15 +38,10 @@ const FabBtn = () => {
             {isNotMobile ? (
                 <AddIcon />
             ) : (
-                    <NavLink
-                        to="/add-transaction"
-                        exact
-                        activeClassName={classes.active}
-                        className={classes.link}
-                    >
+                    <Link to="/add-transaction" exact className={classes.link}>
                         <AddIcon />
-                    </NavLink>)}
-
+                    </Link>
+                )}
         </Fab>
     );
 };

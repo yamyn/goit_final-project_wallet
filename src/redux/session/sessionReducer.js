@@ -18,17 +18,17 @@ const toogleMock = status => {
     };
 };
 
-const user = createReducer(toogleMock(status)('user'), {
+const user = createReducer(null, {
     [loginSuccess]: (state, action) => action.payload.response.user,
     [signupSuccess]: (state, action) => action.payload.response.user,
     [logout]: () => null,
 });
-const authenticated = createReducer(toogleMock(status)('authenticated'), {
+const authenticated = createReducer(false, {
     [loginSuccess]: () => true,
     [signupSuccess]: () => true,
     [logout]: () => false,
 });
-const token = createReducer(toogleMock(status)('token'), {
+const token = createReducer(null, {
     [loginSuccess]: (state, action) => action.payload.response.token,
     [signupSuccess]: (state, action) => action.payload.response.token,
     [logout]: () => null,

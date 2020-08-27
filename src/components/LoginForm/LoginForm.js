@@ -6,7 +6,7 @@ import CustomButton from '../Inputs/Button/CutomButton';
 import logo from '../../img/icons/logo.svg';
 import useStyles from './styles/LoginFormStyles';
 
-const LoginForm = () => {
+const LoginForm = ({ onLogin }) => {
     const { classes } = useStyles();
 
     const formik = useFormik({
@@ -15,7 +15,7 @@ const LoginForm = () => {
             password: '',
         },
         onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
+            onLogin(values);
         },
     });
 

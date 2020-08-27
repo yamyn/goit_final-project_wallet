@@ -1,8 +1,9 @@
 import React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
+import withAuthRedirect from '../components/hoc/withAuthRedirect';
 
-import LoginForm from '../components/LoginForm/LoginForm';
+import LoginForm from '../components/LoginForm/LoginFormContainer';
 import LoginPromo from '../components/LoginForm/LoginPromo';
 
 import useTabletStyles from '../components/LoginForm/styles/LoginFormTabletStyles';
@@ -41,4 +42,4 @@ const LoginPage = () => {
     );
 };
 
-export default LoginPage;
+export default withAuthRedirect(LoginPage);

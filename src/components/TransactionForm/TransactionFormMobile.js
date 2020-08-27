@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ArrowBack from '@material-ui/icons/KeyboardBackspace';
 
 import CustomSelect from '../Inputs/Select/Select';
@@ -12,9 +12,9 @@ const TransactionFormMobile = () => {
     return (
         <>
             <div className={classes.linkWrap}>
-                <NavLink to="/home" exact className={classes.link}>
+                <Link to="/home" exact className={classes.link}>
                     <ArrowBack />
-                </NavLink>
+                </Link>
                 <p className={classes.linkText}>ДОБАВИТЬ ТРАНЗАКЦИЮ</p>
             </div>
             <div className={classes.root}>

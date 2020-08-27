@@ -6,7 +6,7 @@ import useStyles from '../LoginForm/styles/LoginFormStyles';
 import s from './RegisterForm.module.css';
 import logo from '../../img/icons/logo.svg';
 
-const RegisterForm = () => {
+const RegisterForm = ({ onSignUp }) => {
     const { classes } = useStyles();
 
     const formik = useFormik({
@@ -17,7 +17,7 @@ const RegisterForm = () => {
             name: '',
         },
         onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
+            onSignUp(values)
         },
     });
 

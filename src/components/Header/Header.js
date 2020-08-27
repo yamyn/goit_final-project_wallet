@@ -5,6 +5,7 @@
 /* eslint-disable react/no-this-in-sfc */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -31,7 +32,9 @@ export default function Header({ user, authenticated, onLogOut }) {
                         fontSize="large"
                         className={(classes.menuButton, classes.buttonWallet)}
                     >
-                        <ReactSVG src={logo} className={classes.logo} />
+                        <Link to="/home">
+                            <ReactSVG src={logo} className={classes.logo} />
+                        </Link>
                     </IconButton>
                     <Typography variant="h6" className={classes.title}>
                         Wallet
@@ -43,7 +46,11 @@ export default function Header({ user, authenticated, onLogOut }) {
                     >
                         {user.name}
                     </Typography>
-                    <IconButton edge="start" className={classes.icon}>
+                    <IconButton
+                        edge="start"
+                        className={classes.icon}
+                        onClick={onLogOut}
+                    >
                         {isNotMobile && (
                             <Divider
                                 orientation="vertical"
@@ -64,10 +71,12 @@ export default function Header({ user, authenticated, onLogOut }) {
                     )}
                 </Toolbar>
             </AppBar>
-            {isNotMobile && (
-                <Divider orientation="horizontal" light variant="middle" />
-            )}
-        </div>
+            {
+                isNotMobile && (
+                    <Divider orientation="horizontal" light variant="middle" />
+                )
+            }
+        </div >
     );
 }
 
