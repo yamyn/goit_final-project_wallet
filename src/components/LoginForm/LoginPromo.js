@@ -4,7 +4,7 @@ import loginPreview from '../../img/LoginRegister/LoginPhoneExample.png';
 import useStyles from './styles/LoginPromoStyles';
 
 const LoginPromo = () => {
-        const { classes } = useStyles();
+    const { classes } = useStyles();
 
     return (
         <div className={classes.promoStyle}>

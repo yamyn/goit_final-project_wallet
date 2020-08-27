@@ -12,7 +12,7 @@ import Paper from '@material-ui/core/Paper';
 
 export default function CurrencyExchange({ currencies, rowCount }) {
     const { classes, isLaptop } = useStyles(rowCount);
-    console.log('isLap: ', isLaptop);
+
     return (
         <TableContainer className={classes.root}>
             {isLaptop && <Paper elevation={5} />}

@@ -12,17 +12,24 @@ import CustomButton from '../Inputs/Button/CutomButton';
 
 import styles from './TransactionForm.module.css';
 
-const TransactionForm = ({ addTransaction }) => {
+const TransactionForm = ({ addTransaction, diffrentPass }) => {
     const formik = useFormik({
         initialValues: {
             type: '+',
             category: 'Другое',
-            amount: 0,
+            amount: null,
             comments: '',
             date: null,
         },
 
         onSubmit: values => {
+            if (!values.amount) {
+                diffrentPass(`amount is required!`);
+
+                return;
+            }
+            console.log('sdfsdf');
+
             addTransaction(values);
         },
     });

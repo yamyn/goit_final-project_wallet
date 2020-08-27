@@ -41,3 +41,12 @@ export const addTransactionError = createAction(
         meta: { error: true },
     }),
 );
+
+export const getStatistic = createAction('GET_STATISTIC', statistic => ({
+    payload: statistic,
+}));
+
+export const getStatisticError = createAction('GET_STATISTIC/ERROR', error => ({
+    payload: { message: error.message },
+    meta: { error: true },
+}));

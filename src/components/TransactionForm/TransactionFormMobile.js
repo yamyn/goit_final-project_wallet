@@ -13,7 +13,7 @@ import Input from '../Inputs/Input/Input';
 import CustomButton from '../Inputs/Button/CutomButton';
 import useStyles from './TransactionFormStyle';
 
-const TransactionFormMobile = ({ addTransaction }) => {
+const TransactionFormMobile = ({ addTransaction, diffrentPass }) => {
     const { classes } = useStyles();
     const history = useHistory();
 
@@ -21,12 +21,17 @@ const TransactionFormMobile = ({ addTransaction }) => {
         initialValues: {
             type: '+',
             category: 'Другое',
-            amount: 0,
+            amount: null,
             comments: '',
             date: null,
         },
 
         onSubmit: values => {
+            if (!values.amount) {
+                diffrentPass(`amount is required!`);
+
+                return;
+            }
             addTransaction(values);
             setTimeout(() => {
                 history.push('/home');

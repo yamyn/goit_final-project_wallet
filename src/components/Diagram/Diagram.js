@@ -19,11 +19,13 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Divider from '@material-ui/core/Divider';
-
-import Select from '../Inputs/Select/Select';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import useStyles from './DiagramStyles';
+import getCategory from '../../helpers/categoriesChooser';
 
+const categories = getCategory('-');
 const moment = extendMoment(Moment);
 const rangeYear = moment.range(moment().subtract(30, 'year'), moment());
 const yearArray = Array.from(rangeYear.by('year', { excludeEnd: false }))
@@ -72,11 +74,19 @@ const getChart = statistic => {
 };
 const statistic = [12, 19, 3, 5, 2, 3];
 
-export default function Diagram() {
+export default function Diagram({ statistic, costs, profit, getStatistic }) {
+    getStatistic();
+    console.log(statistic);
     const { classes, isNotMobile, isLaptop } = useStyles();
+    const selectedValue = {
+        year: yearArray[0],
+        month: invMonth[moment().format('MM')],
+    };
 
-    const onClick = res => { };
-    const currentMonth = invMonth[moment().format('MM')];
+    const onClick = event => {
+        const { name, value } = event.target;
+        selectedValue[name] = value;
+    };
 
     return (
         <div className={classes.container}>
@@ -107,15 +117,25 @@ export default function Diagram() {
                     </div>
                     <div className={classes.pickerWrap}>
                         <Select
-                            data={yearArray}
-                            onClick={onClick}
-                            initValue={yearArray[0]}
-                            className={classes.picker}
-                        />
+                            value={selectedValue.year}
+                            onChange={onClick}
+                            variant="outlined"
+                            size="small"
+                            name="year"
+                            classes={classes.picker}
+                        >
+                            {yearArray.map(key => (
+                                <MenuItem value={key} key={key}>
+                                    {key}
+                                </MenuItem>
+                            ))}
+                        </Select>
+
+
                         <Select
                             data={Object.keys(monthEnum)}
                             onClick={onClick}
-                            initValue={currentMonth}
+                            initValue={selectedValue.month}
                             className={classes.picker}
                         />
                     </div>

@@ -1,14 +1,22 @@
 import { connect } from 'react-redux';
-
 import Diagram from './Diagram';
 
-// const mapStateToProps = state => ({
-//     user: getUser(state),
-//     authenticated: getIsAuthenticated(state),
-// });
+import {
+    getStatistic,
+    getCosts,
+    getProfit,
+} from '../../redux/walet/waletSelectors';
 
-// const mapDispatchToProps = {
-//     onLogOut: logOut,
-// };
+import { getTransStatistic } from '../../redux/walet/waletOperations';
 
-export default connect()(Diagram);
+const mapStateToProps = state => ({
+    statistic: getStatistic(state),
+    costs: getCosts(state),
+    profit: getProfit(state),
+});
+
+const mapDispatchToProps = {
+    getStatistic: time => getTransStatistic(time),
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Diagram);
