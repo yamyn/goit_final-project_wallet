@@ -11,8 +11,7 @@ const balance = createReducer(0, {
 const transactions = createReducer([], {
     [loadTransactionsSuccess]: (state, action) => action.payload.transactions,
     [addTransactionSuccess]: (state, action) => [
-        ...state,
-        action.payload.transaction,
+        ...action.payload.transactions,
     ],
     [logout]: () => [],
 });

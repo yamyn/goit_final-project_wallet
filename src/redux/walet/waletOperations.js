@@ -3,6 +3,7 @@ import moment from 'moment';
 
 import { fetch, setAuthToken } from '../../helpers/apiService';
 import { getReqUserData } from '../session/sessionSelectors';
+import { getBalance } from './waletSelectors';
 
 import {
     loadTransactionsStart,
@@ -13,7 +14,16 @@ import {
     addTransactionError,
 } from './waletActions';
 
+import { hideModal } from '../app/appAction';
+
 const addPrefix = userId => `/finance/?userId=${userId}`;
+const parseTransDetail = ({ amount, type, date: strDate }, balance) => {
+    const balanceAfter = type === '+' ? balance + amount : balance - amount;
+    const typeBalanceAfter = balanceAfter >= 0 ? '+' : '-';
+    const date = strDate ? moment(strDate).valueOf() : moment().valueOf();
+
+    return { balanceAfter, date, typeBalanceAfter };
+};
 
 export const fetchTransactions = () => (dispatch, getState) => {
     const { token, userId } = getReqUserData(getState());
@@ -41,15 +51,36 @@ export const fetchTransactions = () => (dispatch, getState) => {
 };
 
 export const addTransaction = transaction => (dispatch, getState) => {
-    const { token, userId } = getReqUserData(getState());
+    const state = getState();
+    const { token, userId } = getReqUserData(state);
+    const balance = getBalance(state);
     if (!token || !userId) {
         return;
     }
+    const transDetail = parseTransDetail(transaction, balance);
+    const transformTransaction = { ...transaction, ...transDetail };
 
     dispatch(addTransactionStart());
 
     fetch
-        .post(addPrefix(userId), transaction, setAuthToken(token))
-        .then(response => dispatch(addTransactionSuccess(response.data)))
-        .catch(error => dispatch(addTransactionError(error)));
+        .post(addPrefix(userId), transformTransaction, setAuthToken(token))
+        .then(response => {
+            const transactions = _.get(response, 'data.finance.data').map(
+                formedTransaction => {
+                    const date = moment(formedTransaction.date).format(
+                        `DD.mm.yy`,
+                    );
+                    return { ...formedTransaction, date };
+                },
+            );
+
+            const newBalance = _.get(response, 'data.finance.totalBalance');
+            dispatch(
+                addTransactionSuccess({ transactions, balance: newBalance }),
+            );
+            return dispatch(hideModal());
+        })
+        .catch(error => {
+            return dispatch(addTransactionError(error));
+        });
 };

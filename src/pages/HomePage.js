@@ -5,7 +5,9 @@ import TableWithTransactions from '../components/Table/TableWithTransactionsCont
 import useStyles from './pageStyle';
 import FabBtn from '../components/Inputs/Fab/Fab';
 import SimpleModal from '../components/Modal/Modal';
-import TransactionForm from '../components/TransactionForm/TransactionForm';
+import getTransactionForm from '../components/TransactionForm/TransactionFormContainer';
+
+const TransactionForm = getTransactionForm(true);
 
 const HomePage = () => {
     const { classes } = useStyles();
@@ -13,7 +15,6 @@ const HomePage = () => {
     return (
         <div className={classes.root}>
             <Header />
-
             <div className={classes.mainWrap}>
                 <NavBar />
                 <TableWithTransactions />

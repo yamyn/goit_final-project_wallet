@@ -4,8 +4,8 @@ export const loadTransactionsStart = createAction('LOAD_TRANSACTIONS/START');
 
 export const loadTransactionsSuccess = createAction(
     'LOAD_TRANSACTIONS/SUCCESS',
-    walet => ({
-        payload: walet,
+    wallet => ({
+        payload: wallet,
     }),
 );
 
@@ -29,8 +29,8 @@ export const addTransactionStart = createAction('ADD_TRANSACTION/START');
 
 export const addTransactionSuccess = createAction(
     'ADD_TRANSACTION/SUCCESS',
-    transaction => ({
-        payload: { transaction },
+    wallet => ({
+        payload: wallet,
     }),
 );
 

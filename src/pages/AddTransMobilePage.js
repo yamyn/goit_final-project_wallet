@@ -1,8 +1,9 @@
 import React from 'react';
 
-
 import Header from '../components/Header/HeaderContainer';
-import TransactionForm from '../components/TransactionForm/TransactionFormMobile';
+import getTransactionForm from '../components/TransactionForm/TransactionFormContainer';
+
+const TransactionForm = getTransactionForm(false);
 
 const AddTransMobilePage = () => (
     <div>
