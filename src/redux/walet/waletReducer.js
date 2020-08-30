@@ -1,26 +1,20 @@
 import { createReducer, combineReducers } from '@reduxjs/toolkit';
+import moment from 'moment';
 import {
     loadTransactionsSuccess,
     addTransactionSuccess,
-    getStatistic,
+    changeStatisticDate,
 } from './waletActions';
 
 import { logout } from '../session/sessionAction';
 
+const statDate = createReducer(moment().format('yyyy-MM'), {
+    [changeStatisticDate]: (state, action) => action.payload.time,
+});
+
 const balance = createReducer(0, {
     [loadTransactionsSuccess]: (state, action) => action.payload.balance,
     [addTransactionSuccess]: (state, action) => action.payload.balance,
-});
-
-const statistic = createReducer(null, {
-    [getStatistic]: (state, action) => action.payload.statistic,
-});
-
-const costs = createReducer(0, {
-    [getStatistic]: (state, action) => action.payload.costs,
-});
-const profit = createReducer(0, {
-    [getStatistic]: (state, action) => action.payload.profit,
 });
 
 const transactions = createReducer([], {
@@ -34,9 +28,7 @@ const transactions = createReducer([], {
 const waletReducer = combineReducers({
     balance,
     transactions,
-    statistic,
-    costs,
-    profit,
+    statDate,
 });
 
 export default waletReducer;

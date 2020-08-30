@@ -19,7 +19,7 @@ const StyledTableCell = withStyles({
     },
 })(TableCell);
 
-const isStyledTableRow = (isDesc) => {
+const isStyledTableRow = isDesc => {
     if (isDesc) {
         return TableRow;
     }
@@ -47,71 +47,82 @@ const TableWithTransactions = ({ transactions }) => {
     const wrapStyles = !isNotTablet
         ? {}
         : {
-            flex: '0 0 70%',
-            backgroundColor: theme.palette.background.primary,
-            boxShadow: '-2px -2px 2px rgba(0,0,0,0.1)',
-        };
+              flex: '0 0 70%',
+              backgroundColor: theme.palette.background.primary,
+              boxShadow: '-2px -2px 2px rgba(0,0,0,0.1)',
+          };
 
     const StyledTableRow = isStyledTableRow(isNotTablet);
 
-    {
-        if (isMobile)
-            return (
+    return (
+        <>
+            {isMobile ? (
                 <TableWithTransactionsForMobile
                     transactions={transactions}
                     colors={colorType}
                 />
-            );
-    }
-    return (
-        <div style={wrapStyles}>
-            <Table aria-label="transation table">
-                <TableHead>
-                    <TableRow>
-                        <StyledTableCell>Дата</StyledTableCell>
-                        <StyledTableCell align="center">Тип</StyledTableCell>
-                        <StyledTableCell align="center">
-                            Категория
-                        </StyledTableCell>
-                        <StyledTableCell align="center">
-                            Комментарий
-                        </StyledTableCell>
-                        <StyledTableCell align="center">Сумма</StyledTableCell>
-                        <StyledTableCell align="center">Баланс</StyledTableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {transactions.map(transaction => (
-                        <StyledTableRow key={transaction._id}>
-                            <StyledTableCell component="th" scope="row">
-                                {transaction.date}
-                            </StyledTableCell>
-                            <StyledTableCell
-                                align="center"
-                                style={{ color: colorType[transaction.type] }}
-                            >
-                                {transaction.type}
-                            </StyledTableCell>
-                            <StyledTableCell align="center">
-                                {transaction.category}
-                            </StyledTableCell>
-                            <StyledTableCell align="center">
-                                {transaction.comments}
-                            </StyledTableCell>
-                            <StyledTableCell
-                                align="center"
-                                style={{ color: colorType[transaction.type] }}
-                            >
-                                {transaction.amount}
-                            </StyledTableCell>
-                            <StyledTableCell align="center">
-                                {transaction.balanceAfter}
-                            </StyledTableCell>
-                        </StyledTableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </div>
+            ) : (
+                <div style={wrapStyles}>
+                    <Table aria-label="transation table">
+                        <TableHead>
+                            <TableRow>
+                                <StyledTableCell>Дата</StyledTableCell>
+                                <StyledTableCell align="center">
+                                    Тип
+                                </StyledTableCell>
+                                <StyledTableCell align="center">
+                                    Категория
+                                </StyledTableCell>
+                                <StyledTableCell align="center">
+                                    Комментарий
+                                </StyledTableCell>
+                                <StyledTableCell align="center">
+                                    Сумма
+                                </StyledTableCell>
+                                <StyledTableCell align="center">
+                                    Баланс
+                                </StyledTableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {transactions.map(transaction => (
+                                <StyledTableRow key={transaction._id}>
+                                    <StyledTableCell component="th" scope="row">
+                                        {transaction.date}
+                                    </StyledTableCell>
+                                    <StyledTableCell
+                                        align="center"
+                                        style={{
+                                            color: colorType[transaction.type],
+                                        }}
+                                    >
+                                        {transaction.type}
+                                    </StyledTableCell>
+                                    <StyledTableCell align="center">
+                                        {transaction.category}
+                                    </StyledTableCell>
+                                    <StyledTableCell align="center">
+                                        {transaction.comments}
+                                    </StyledTableCell>
+                                    <StyledTableCell
+                                        align="center"
+                                        style={{
+                                            color: colorType[transaction.type],
+                                        }}
+                                    >
+                                        {transaction.amount}
+                                    </StyledTableCell>
+                                    <StyledTableCell align="center">
+                                        {transaction.balanceAfter}
+                                    </StyledTableCell>
+                                </StyledTableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </div>
+            )}
+            )
+        </>
     );
 };
 

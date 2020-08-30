@@ -1,91 +1,47 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/jsx-key */
-/* eslint-disable no-return-assign */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/no-this-in-sfc */
-import Moment from 'moment';
-import { extendMoment } from 'moment-range';
-import { invert } from 'lodash';
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Pie } from 'react-chartjs-2';
-import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
-import { TextField } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Divider from '@material-ui/core/Divider';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
+import { Pie } from 'react-chartjs-2';
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableRow,
+    Divider,
+    Select,
+    MenuItem,
+} from '@material-ui/core';
 
 import useStyles from './DiagramStyles';
-import getCategory from '../../helpers/categoriesChooser';
 
-const categories = getCategory('-');
-const moment = extendMoment(Moment);
-const rangeYear = moment.range(moment().subtract(30, 'year'), moment());
-const yearArray = Array.from(rangeYear.by('year', { excludeEnd: false }))
-    .map(time => time.format('yyyy'))
-    .reverse();
+import {
+    yearArray,
+    monthEnum,
+    invMonth,
+    categoryColor,
+    getChart,
+} from '../../helpers/parseStatistic';
 
-const monthEnum = {
-    Январь: '01',
-    Февраль: '02',
-    Март: '03',
-    Апрель: '04',
-    Май: '05',
-    Июнь: '06',
-    Июль: '07',
-    Август: '08',
-    Сентябрь: '09',
-    Октябрь: '10',
-    Ноябрь: '11',
-    Декабрь: '12',
-};
-const invMonth = invert(monthEnum);
+const StyledSelect = withStyles({
+    select: {
+        padding: '9px 14px',
+    },
+})(Select);
 
-const categoryColor = {
-    'Основные расходы': '#ecb22a',
-    Продукты: '#e28b20',
-    Машина: '#d25925',
-    'Забота о себе': '#67b7d0',
-    'Забота о детях': '#5593d7',
-    'Товары для дома': '#3a68a6',
-    Образование: '#9cc254',
-    Развлечение: '#73ad57',
-    Другое: '#507c3a',
-};
-
-const getChart = statistic => {
-    return {
-        labels: Object.keys(categoryColor),
-        datasets: [
-            {
-                label: 'diagram',
-                data: statistic,
-                backgroundColor: Object.values(categoryColor),
-            },
-        ],
-    };
-};
-const statistic = [12, 19, 3, 5, 2, 3];
-
-export default function Diagram({ statistic, costs, profit, getStatistic }) {
-    getStatistic();
-    console.log(statistic);
+export default function Diagram({ statisticData, date, onChange }) {
     const { classes, isNotMobile, isLaptop } = useStyles();
-    const selectedValue = {
-        year: yearArray[0],
-        month: invMonth[moment().format('MM')],
-    };
 
-    const onClick = event => {
-        const { name, value } = event.target;
-        selectedValue[name] = value;
+    const { statistic, сosts, profit } = statisticData;
+    const [year, month] = date.split('-');
+
+    const onChangeYear = event => {
+        const { value } = event.target;
+        onChange(`${value}-${month}`);
+    };
+    const onChangeMonth = event => {
+        const { value } = event.target;
+        onChange(`${year}-${monthEnum[value]}`);
     };
 
     return (
@@ -109,35 +65,43 @@ export default function Diagram({ statistic, costs, profit, getStatistic }) {
                                 },
                                 tooltips: {
                                     enabled: true,
-                                    label: Object.keys(categoryColor),
+                                    label: Object.keys(statistic),
                                     displayColors: false,
                                 },
                             }}
                         />
                     </div>
                     <div className={classes.pickerWrap}>
-                        <Select
-                            value={selectedValue.year}
-                            onChange={onClick}
-                            variant="outlined"
-                            size="small"
-                            name="year"
-                            classes={classes.picker}
-                        >
-                            {yearArray.map(key => (
-                                <MenuItem value={key} key={key}>
-                                    {key}
-                                </MenuItem>
-                            ))}
-                        </Select>
-
-
-                        <Select
-                            data={Object.keys(monthEnum)}
-                            onClick={onClick}
-                            initValue={selectedValue.month}
-                            className={classes.picker}
-                        />
+                        <div className={classes.picker}>
+                            <StyledSelect
+                                value={year}
+                                onChange={onChangeYear}
+                                variant="outlined"
+                                name="year"
+                                fullWidth
+                            >
+                                {yearArray.map(key => (
+                                    <MenuItem value={key} key={key}>
+                                        {key}
+                                    </MenuItem>
+                                ))}
+                            </StyledSelect>
+                        </div>
+                        <div className={classes.picker}>
+                            <StyledSelect
+                                value={invMonth[month]}
+                                onChange={onChangeMonth}
+                                variant="outlined"
+                                name="month"
+                                fullWidth
+                            >
+                                {Object.keys(monthEnum).map(key => (
+                                    <MenuItem value={key} key={key}>
+                                        {key}
+                                    </MenuItem>
+                                ))}
+                            </StyledSelect>
+                        </div>
                     </div>
                 </div>
                 <div className={classes.tableWrap}>
@@ -146,20 +110,27 @@ export default function Diagram({ statistic, costs, profit, getStatistic }) {
                             <TableHead>
                                 <TableRow className={classes.thead}>
                                     <TableCell className={classes.hCeil} />
-                                    <TableCell className={classes.hCeil}>Категория</TableCell>
-                                    <TableCell className={classes.hCeil}>Сума</TableCell>
+                                    <TableCell className={classes.hCeil}>
+                                        Категория
+                                    </TableCell>
+                                    <TableCell className={classes.hCeil}>
+                                        Сума
+                                    </TableCell>
                                 </TableRow>
                             </TableHead>
                         )}
                         <TableBody className={classes.tbody}>
-                            {Object.keys(categoryColor).map(category => (
-                                <TableRow className={classes.trow}>
+                            {Object.keys(statistic).map((category, index) => (
+                                <TableRow
+                                    className={classes.trow}
+                                    key={category}
+                                >
                                     <TableCell className={classes.ceil}>
                                         <div
                                             className={classes.colorPick}
                                             style={{
                                                 backgroundColor:
-                                                    categoryColor[category],
+                                                    categoryColor[index],
                                             }}
                                         />
                                     </TableCell>
@@ -169,16 +140,22 @@ export default function Diagram({ statistic, costs, profit, getStatistic }) {
                                     <TableCell
                                         className={`${classes.ceil} ${classes.amountCeil}`}
                                     >
-                                        1000
-                                </TableCell>
+                                        {statistic[category]}
+                                    </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
                     </Table>
                     <Divider orientation="horizontal" />
                     <div className={classes.balanceWrap}>
-                        <p>Расходы:</p>
-                        <p>Доходы:</p>
+                        <div className={classes.balanceRow}>
+                            <p>РАСХОДЫ: </p>
+                            <p style={{ color: '#e20505' }}>{profit}</p>
+                        </div>
+                        <div className={classes.balanceRow}>
+                            <p>ДОХОДЫ:</p>
+                            <p style={{ color: '#25a805' }}>{сosts}</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -186,18 +163,12 @@ export default function Diagram({ statistic, costs, profit, getStatistic }) {
     );
 }
 
-Diagram.defaultProps = {
-    // user: PropTypes.shape({
-    //     name: 'name',
-    //     email: 'email',
-    // }),
-};
-
 Diagram.propTypes = {
-    // user: PropTypes.shape({
-    //     name: PropTypes.string,
-    //     email: PropTypes.string,
-    // }),
-    // authenticated: PropTypes.bool.isRequired,
-    // onLogOut: PropTypes.func.isRequired,
+    statisticData: PropTypes.shape({
+        statistic: PropTypes.objectOf(PropTypes.number),
+        сosts: PropTypes.number,
+        profit: PropTypes.number,
+    }).isRequired,
+    date: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
 };

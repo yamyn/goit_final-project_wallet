@@ -42,11 +42,6 @@ export const addTransactionError = createAction(
     }),
 );
 
-export const getStatistic = createAction('GET_STATISTIC', statistic => ({
-    payload: statistic,
-}));
-
-export const getStatisticError = createAction('GET_STATISTIC/ERROR', error => ({
-    payload: { message: error.message },
-    meta: { error: true },
+export const changeStatisticDate = createAction('CHANGE_STAT_TIME', time => ({
+    payload: { time },
 }));

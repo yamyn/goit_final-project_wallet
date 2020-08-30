@@ -3,8 +3,7 @@ import moment from 'moment';
 
 import { fetch, setAuthToken } from '../../helpers/apiService';
 import { getReqUserData } from '../session/sessionSelectors';
-import { getBalance, getTransactions } from './waletSelectors';
-import getCategory from '../../helpers/categoriesChooser';
+import { getBalance } from './waletSelectors';
 
 import {
     loadTransactionsStart,
@@ -13,13 +12,10 @@ import {
     addTransactionStart,
     addTransactionSuccess,
     addTransactionError,
-    getStatisticError,
-    getStatistic
 } from './waletActions';
 
 import { hideModal } from '../app/appAction';
 
-const categories = getCategory('-');
 const addPrefix = userId => `/finance/?userId=${userId}`;
 const parseTransDetail = ({ amount, type, date: strDate }, balance) => {
     const balanceAfter = type === '+' ? balance + amount : balance - amount;
@@ -42,7 +38,7 @@ export const fetchTransactions = () => (dispatch, getState) => {
         .then(response => {
             const transactions = _.get(response, 'data.finance.data').map(
                 transaction => {
-                    const date = moment(transaction.date).format(`DD.mm.yy`);
+                    const date = moment(transaction.date).format(`DD.MM.YY`);
                     return { ...transaction, date };
                 },
             );
@@ -72,7 +68,7 @@ export const addTransaction = transaction => (dispatch, getState) => {
             const transactions = _.get(response, 'data.finance.data').map(
                 formedTransaction => {
                     const date = moment(formedTransaction.date).format(
-                        `DD.mm.yy`,
+                        `DD.MM.YY`,
                     );
                     return { ...formedTransaction, date };
                 },
@@ -87,31 +83,4 @@ export const addTransaction = transaction => (dispatch, getState) => {
         .catch(error => {
             return dispatch(addTransactionError(error));
         });
-};
-
-export const getTransStatistic = time => (dispatch, getState) => {
-    try {
-        const transactions = getTransactions(getState());
-        if (transactions.length === 0) return;
-        const statistic = {};
-        let сosts = 0;
-        let profit = 0;
-
-        transactions.forEach(trans => {
-            if (trans.type === '+') {
-                profit += trans.amount;
-
-                return;
-            }
-            if (!statistic[trans.category]) {
-                statistic[trans.category] = 0;
-            }
-            сosts += trans.amount;
-            statistic[trans.category] += trans.amount;
-        });
-
-        dispatch(getStatistic({ statistic, сosts, profit }));
-    } catch (error) {
-        dispatch(getStatisticError(error));
-    }
 };

@@ -34,7 +34,7 @@ export default class App extends Component {
         // const isMobile = useMediaQuery(theme.breakpoints.down('tablet'));
 
         return (
-            <Container disableGutters={true}>
+            <Container disableGutters>
                 <Switch>
                     <ProtectedRoute
                         path="/diagram"

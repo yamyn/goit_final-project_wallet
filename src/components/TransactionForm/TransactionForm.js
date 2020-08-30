@@ -28,7 +28,6 @@ const TransactionForm = ({ addTransaction, diffrentPass }) => {
 
                 return;
             }
-            console.log('sdfsdf');
 
             addTransaction(values);
         },

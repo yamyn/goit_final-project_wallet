@@ -1,22 +1,16 @@
 import { connect } from 'react-redux';
 import Diagram from './Diagram';
 
-import {
-    getStatistic,
-    getCosts,
-    getProfit,
-} from '../../redux/walet/waletSelectors';
-
-import { getTransStatistic } from '../../redux/walet/waletOperations';
+import { getStatistic, getStatDate } from '../../redux/walet/waletSelectors';
+import { changeStatisticDate } from '../../redux/walet/waletActions';
 
 const mapStateToProps = state => ({
-    statistic: getStatistic(state),
-    costs: getCosts(state),
-    profit: getProfit(state),
+    statisticData: getStatistic(state),
+    date: getStatDate(state),
 });
 
 const mapDispatchToProps = {
-    getStatistic: time => getTransStatistic(time),
+    onChange: changeStatisticDate,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Diagram);

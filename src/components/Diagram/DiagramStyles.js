@@ -96,7 +96,6 @@ export default () => {
                 [laptop]: { display: 'flex' },
                 flexWrap: 'wrap',
                 justifyContent: 'space-between',
-
             },
             trow: {
                 [laptop]: {
@@ -138,6 +137,17 @@ export default () => {
                 width: '90%',
                 margin: '0 auto',
                 minWidth: 90,
+                [theme.breakpoints.up('tablet')]: {
+                    margin: 0,
+                },
+            },
+            balanceRow: {
+                display: 'flex',
+                justifyContent: 'space-between',
+                [theme.breakpoints.up('tablet')]: {
+                    width: 220,
+                    margin: '0 0 0 auto',
+                },
             },
         }))(),
     };
