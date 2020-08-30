@@ -13,25 +13,19 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import TableWithTransactionsForMobile from './TableForMobile/TableWithTransactions';
 
 const StyledTableCell = withStyles({
-    head: { backgroundColor: '#fff', textTransform: 'capitalize' },
+    head: { textTransform: 'capitalize' },
     body: {
         fontSize: 13,
     },
 })(TableCell);
 
-const isStyledTableRow = isDesc => {
-    if (isDesc) {
-        return TableRow;
-    }
-
-    return withStyles({
-        root: {
-            '&:nth-of-type(odd)': {
-                backgroundColor: '#f3f6f6',
-            },
+const StyledTableRow = withStyles({
+    root: {
+        '&:nth-of-type(odd)': {
+            backgroundColor: '#f3f6f6',
         },
-    })(TableRow);
-};
+    },
+})(TableRow);
 
 const colorType = {
     '-': '#e20505',
@@ -48,11 +42,12 @@ const TableWithTransactions = ({ transactions }) => {
         ? {}
         : {
               flex: '0 0 70%',
-              backgroundColor: theme.palette.background.primary,
-              boxShadow: '-2px -2px 2px rgba(0,0,0,0.1)',
           };
-
-    const StyledTableRow = isStyledTableRow(isNotTablet);
+    const tHeadStyles = isMobile
+        ? {}
+        : {
+              backgroundColor: theme.palette.primary.iconActive,
+          };
 
     return (
         <>
@@ -65,7 +60,7 @@ const TableWithTransactions = ({ transactions }) => {
                 <div style={wrapStyles}>
                     <Table aria-label="transation table">
                         <TableHead>
-                            <TableRow>
+                            <TableRow style={tHeadStyles}>
                                 <StyledTableCell>Дата</StyledTableCell>
                                 <StyledTableCell align="center">
                                     Тип
@@ -121,7 +116,6 @@ const TableWithTransactions = ({ transactions }) => {
                     </Table>
                 </div>
             )}
-            )
         </>
     );
 };

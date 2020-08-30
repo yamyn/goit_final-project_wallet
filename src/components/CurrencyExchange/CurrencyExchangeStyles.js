@@ -26,6 +26,7 @@ export default count => {
                     boxShadow: '14px 14px 15px rgba(0,0,0,0.1)',
                 },
                 [theme.breakpoints.up('desktop')]: {
+                    backgroundColor: theme.palette.primary.iconActive,
                     boxShadow: '4px 4px 15px rgba(0,0,0,0.3)',
                     width: '95%',
                     margin: '0 auto',

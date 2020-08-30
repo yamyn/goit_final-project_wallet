@@ -16,15 +16,11 @@ export default () => {
                     margin: '0 auto',
                     display: 'flex',
                     justifyContent: 'space-between',
-                    backgroundColor: '#f0f3f3',
                     minHeight: '1vh',
                 },
             },
             root: {
                 position: 'relative',
-                [theme.breakpoints.up('desktop')]: {
-                    // position: 'relative',
-                },
             },
         }))(),
     };

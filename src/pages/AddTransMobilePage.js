@@ -5,11 +5,13 @@ import getTransactionForm from '../components/TransactionForm/TransactionFormCon
 
 const TransactionForm = getTransactionForm(false);
 
-const AddTransMobilePage = () => (
-    <div>
-        <Header />
-        <TransactionForm />
-    </div>
-);
+const AddTransMobilePage = () => {
+    return (
+        <div>
+            <Header />
+            <TransactionForm />
+        </div>
+    );
+};
 
 export default AddTransMobilePage;

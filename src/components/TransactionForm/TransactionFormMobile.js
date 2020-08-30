@@ -40,7 +40,7 @@ const TransactionFormMobile = ({ addTransaction, diffrentPass }) => {
     });
     return (
         <>
-            <form className={classes.loginForm} onSubmit={formik.handleSubmit}>
+            <form className={classes.form} onSubmit={formik.handleSubmit}>
                 <div className={classes.linkWrap}>
                     <Link to="/home" exact className={classes.link}>
                         <ArrowBack />
@@ -106,9 +106,11 @@ const TransactionFormMobile = ({ addTransaction, diffrentPass }) => {
                         />
                     </div>
                 </div>
-                <CustomButton type="main" title="Добавить" />
+                <div className={classes.btnWrap}>
+                    <CustomButton type="main" title="Добавить" />
+                </div>
             </form>
         </>
-    )
+    );
 };
 export default TransactionFormMobile;

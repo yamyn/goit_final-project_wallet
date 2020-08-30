@@ -4,7 +4,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 export default () => {
     const theme = useTheme();
     const isNotMobile = useMediaQuery(theme.breakpoints.up('tablet'));
-
+    console.log(theme);
     return {
         isNotMobile,
         classes: makeStyles(() => ({
@@ -14,7 +14,6 @@ export default () => {
                     boxShadow: '0 18px 20px rgba(0,0,0,0.1)',
                     marginBottom: 50,
                 },
-
             },
             headerWrap: {
                 minHeight: 40,
@@ -57,7 +56,10 @@ export default () => {
                 fontSize: 18,
                 color: theme.palette.primary.secondary,
                 fontWeight: theme.typography.fontWeightBold,
-                fontFamily: '../../fonts/bauhouse/BauhausC_Medium_Bold.ttf',
+                fontFamily: theme.typography.bauhouseFont,
+                [theme.breakpoints.up('tablet')]: {
+                    color: theme.palette.primary.black,
+                },
             },
             buttonWallet: {
                 margin: 0,
@@ -72,7 +74,6 @@ export default () => {
             LogOut: {
                 padding: 0,
                 color: theme.palette.primary.secondary,
-                fontFamily: '../../fonts/bauhouse/BauhausC_Medium_Bold.ttf',
                 [theme.breakpoints.up('tablet')]: {
                     fontSize: 17,
                 },

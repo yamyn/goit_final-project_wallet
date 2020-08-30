@@ -56,7 +56,8 @@ export default createMuiTheme({
         },
     },
     typography: {
-        fontFamily: 'Bauhouse',
+        fontFamily: 'Helvetica, Bauhouse',
         fontSize: 14,
+        bauhouseFont: 'Bauhouse, Helvetica',
     },
 });

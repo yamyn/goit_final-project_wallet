@@ -11,6 +11,9 @@ export default () => {
         isNotTablet,
         classes: makeStyles(() => ({
             root: { padding: '0 15px' },
+            form: {
+                height: '100%',
+            },
             link: {
                 display: 'block',
                 color: theme.palette.primary.iconActive,
@@ -26,11 +29,10 @@ export default () => {
                 textDecoration: 'none',
                 color: theme.palette.primary.iconActive,
                 backgroundColor: theme.palette.background.navPrimary,
-
             },
             linkText: {
                 margin: '0',
-            }
+            },
         }))(),
     };
 };

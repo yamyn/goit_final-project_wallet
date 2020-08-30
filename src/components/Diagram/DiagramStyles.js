@@ -12,6 +12,7 @@ export default () => {
         isLaptop,
         classes: makeStyles(() => ({
             container: {
+                backgroundColor: '#fff',
                 [theme.breakpoints.up('desktop')]: {
                     flex: '0 0 70%',
                     boxShadow: '4px 4px 15px rgba(0,0,0,0.3)',
