@@ -1,4 +1,6 @@
 import { createMuiTheme } from '@material-ui/core/styles';
+import HelveticaFont from './HelveticaFont';
+import BauhouseFont from './BauhouseFont';
 
 export default createMuiTheme({
     overrides: {
@@ -26,6 +28,11 @@ export default createMuiTheme({
                 color: '#284060',
             },
         },
+        MuiCssBaseline: {
+            '@global': {
+                '@font-face': [HelveticaFont, BauhouseFont],
+            },
+        },
     },
     breakpoints: {
         values: {
@@ -49,7 +56,7 @@ export default createMuiTheme({
         },
     },
     typography: {
-        fontFamily: '"HelveticaNeueCyr", "BauhausC"',
+        fontFamily: 'Bauhouse',
         fontSize: 14,
     },
 });
