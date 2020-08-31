@@ -10,6 +10,7 @@ const StyledTableCell = withStyles({
     head: { backgroundColor: '#ffffff', textTransform: 'capitalize' },
     body: {
         fontSize: 14,
+        width: '50%',
     },
 })(TableCell);
 
@@ -25,7 +26,7 @@ const StyledTableRow = withStyles({
 const StyledTable = withStyles({
     root: {
         width: '95%',
-        margin: '0 auto',
+        margin: '0 auto 20px auto',
         borderCollapse: 'collapse',
     },
 })(Table);
@@ -42,10 +43,8 @@ const TableWithTransactions = ({ transactions, colors }) => {
                         <StyledTableRow
                             style={{ borderColor: colors[transaction.type] }}
                         >
-                            <StyledTableCell align="center">
-                                Дата
-                            </StyledTableCell>
-                            <StyledTableCell align="center">
+                            <StyledTableCell align="left">Дата</StyledTableCell>
+                            <StyledTableCell align="left">
                                 {transaction.date}
                             </StyledTableCell>
                         </StyledTableRow>
@@ -53,11 +52,9 @@ const TableWithTransactions = ({ transactions, colors }) => {
                         <StyledTableRow
                             style={{ borderColor: colors[transaction.type] }}
                         >
-                            <StyledTableCell align="center">
-                                Тип
-                            </StyledTableCell>
+                            <StyledTableCell align="left">Тип</StyledTableCell>
                             <StyledTableCell
-                                align="center"
+                                align="left"
                                 style={{ color: colors[transaction.type] }}
                             >
                                 {transaction.type}
@@ -66,31 +63,31 @@ const TableWithTransactions = ({ transactions, colors }) => {
                         <StyledTableRow
                             style={{ borderColor: colors[transaction.type] }}
                         >
-                            <StyledTableCell align="center">
+                            <StyledTableCell align="left">
                                 Категория
                             </StyledTableCell>
-                            <StyledTableCell align="center">
+                            <StyledTableCell align="left">
                                 {transaction.category}
                             </StyledTableCell>
                         </StyledTableRow>
                         <StyledTableRow
                             style={{ borderColor: colors[transaction.type] }}
                         >
-                            <StyledTableCell align="center">
+                            <StyledTableCell align="left">
                                 Комментарий
                             </StyledTableCell>
-                            <StyledTableCell align="center">
+                            <StyledTableCell align="left">
                                 {transaction.comments}
                             </StyledTableCell>
                         </StyledTableRow>
                         <StyledTableRow
                             style={{ borderColor: colors[transaction.type] }}
                         >
-                            <StyledTableCell align="center">
+                            <StyledTableCell align="left">
                                 Сумма
                             </StyledTableCell>
                             <StyledTableCell
-                                align="center"
+                                align="left"
                                 style={{ color: colors[transaction.type] }}
                             >
                                 {transaction.amount}
@@ -99,10 +96,10 @@ const TableWithTransactions = ({ transactions, colors }) => {
                         <StyledTableRow
                             style={{ borderColor: colors[transaction.type] }}
                         >
-                            <StyledTableCell align="center">
+                            <StyledTableCell align="left">
                                 Баланс
                             </StyledTableCell>
-                            <StyledTableCell align="center">
+                            <StyledTableCell align="left">
                                 {transaction.balanceAfter}
                             </StyledTableCell>
                         </StyledTableRow>

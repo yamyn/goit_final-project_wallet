@@ -4,7 +4,6 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 export default () => {
     const theme = useTheme();
     const isNotMobile = useMediaQuery(theme.breakpoints.up('tablet'));
-    console.log(theme);
     return {
         isNotMobile,
         classes: makeStyles(() => ({
