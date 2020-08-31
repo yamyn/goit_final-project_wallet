@@ -23,7 +23,11 @@ const useStyles = curTheme =>
                 bottom: theme.spacing(9),
             },
         },
-        link: { color: theme.palette.primary.iconActive, display: 'block', paddingTop: 7 },
+        link: {
+            color: theme.palette.primary.iconActive,
+            display: 'block',
+            paddingTop: 7,
+        },
     }))(curTheme);
 
 const FabBtn = () => {
@@ -38,10 +42,14 @@ const FabBtn = () => {
             {isNotMobile ? (
                 <AddIcon />
             ) : (
-                    <Link to="/add-transaction" exact className={classes.link}>
-                        <AddIcon />
-                    </Link>
-                )}
+                <Link
+                    to="/add-transaction"
+                    exact="true"
+                    className={classes.link}
+                >
+                    <AddIcon />
+                </Link>
+            )}
         </Fab>
     );
 };

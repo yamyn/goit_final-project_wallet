@@ -71,12 +71,10 @@ export default function Header({ user, authenticated, onLogOut }) {
                     )}
                 </Toolbar>
             </AppBar>
-            {
-                isNotMobile && (
-                    <Divider orientation="horizontal" light variant="middle" />
-                )
-            }
-        </div >
+            {isNotMobile && (
+                <Divider orientation="horizontal" light variant="middle" />
+            )}
+        </div>
     );
 }
 

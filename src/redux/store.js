@@ -1,5 +1,14 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import { persistStore, persistReducer } from 'redux-persist';
+import {
+    persistStore,
+    persistReducer,
+    FLUSH,
+    REHYDRATE,
+    PAUSE,
+    PERSIST,
+    PURGE,
+    REGISTER,
+} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import waletReducer from './walet/waletReducer';
@@ -26,7 +35,22 @@ export const store = configureStore({
         exchange: exchangeReducer,
         app: appReducer,
     },
-    middleware: [...getDefaultMiddleware(), errorHandler, validation],
+    middleware: [
+        ...getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: [
+                    FLUSH,
+                    REHYDRATE,
+                    PAUSE,
+                    PERSIST,
+                    PURGE,
+                    REGISTER,
+                ],
+            },
+        }),
+        errorHandler,
+        validation,
+    ],
 });
 
 export const persistor = persistStore(store);

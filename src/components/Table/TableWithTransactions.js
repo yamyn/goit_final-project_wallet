@@ -1,12 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 // Material UI
 import { withStyles, useTheme } from '@material-ui/core/styles';
-
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableRow,
+} from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 // components
@@ -118,6 +120,20 @@ const TableWithTransactions = ({ transactions }) => {
             )}
         </>
     );
+};
+
+TableWithTransactions.propTypes = {
+    transactions: PropTypes.arrayOf(
+        PropTypes.shape({
+            _id: PropTypes.string,
+            date: PropTypes.string,
+            type: PropTypes.string,
+            category: PropTypes.string,
+            amount: PropTypes.number,
+            balanceAfter: PropTypes.number,
+            typeBalanceAfter: PropTypes.string,
+        }),
+    ).isRequired,
 };
 
 export default TableWithTransactions;

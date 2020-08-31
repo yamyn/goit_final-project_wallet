@@ -7,7 +7,7 @@ import FabBtn from '../components/Inputs/Fab/Fab';
 import SimpleModal from '../components/Modal/Modal';
 import getTransactionForm from '../components/TransactionForm/TransactionFormContainer';
 
-const TransactionForm = getTransactionForm(true);
+const TransactionForm = getTransactionForm('desk');
 
 const HomePage = () => {
     const { classes } = useStyles();

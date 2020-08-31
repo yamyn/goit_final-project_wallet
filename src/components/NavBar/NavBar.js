@@ -9,7 +9,7 @@ import { Route } from 'react-router-dom';
 
 import BalanceMonitor from '../BalanceMonitor/BalanceMonitorContainer';
 import useStyles from './NavBarStyles';
-import Menu from '../Menu/Menu';
+import Menu from '../Menu/MenuContainer';
 import CurrencyExchange from '../CurrencyExchange/CurrencyExchangeContainer';
 
 export default function NavBar() {

@@ -42,7 +42,7 @@ const TransactionFormMobile = ({ addTransaction, diffrentPass }) => {
         <>
             <form className={classes.form} onSubmit={formik.handleSubmit}>
                 <div className={classes.linkWrap}>
-                    <Link to="/home" exact className={classes.link}>
+                    <Link to="/home" exact="true" className={classes.link}>
                         <ArrowBack />
                     </Link>
                     <p className={classes.linkText}>ДОБАВИТЬ ТРАНЗАКЦИЮ</p>

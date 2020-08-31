@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -11,7 +12,7 @@ import diagram from '../../img/icons/diagrams/baseline-timeline-24px.svg';
 import exchange from '../../img/icons/currency exchange/baseline-attach_money-24px.svg';
 
 // eslint-disable-next-line react/prop-types
-export default function Menu() {
+export default function Menu({ balance }) {
     const { classes, isNotMobile, isDesktop } = useStyles();
     return (
         <>
@@ -61,7 +62,6 @@ export default function Menu() {
                                         className={classes.divider}
                                     />
                                 )}
-
                             </>
                         )}
                     </NavLink>
@@ -69,22 +69,34 @@ export default function Menu() {
                 {!isDesktop && (
                     <ListItem className={classes.item}>
                         {isNotMobile ? (
-                            <span className={classes.balance}>Баланс: 3000</span>
+                            <span className={classes.balance}>
+                                Баланс: {balance}
+                            </span>
                         ) : (
-                                <NavLink
-                                    to="/exchange"
-                                    exact
-                                    activeClassName={classes.active}
-                                    className={classes.link}
-                                >
-                                    <ReactSVG src={exchange} className={classes.icon} />
-                                </NavLink>
-                            )}
+                            <NavLink
+                                to="/exchange"
+                                exact
+                                activeClassName={classes.active}
+                                className={classes.link}
+                            >
+                                <ReactSVG
+                                    src={exchange}
+                                    className={classes.icon}
+                                />
+                            </NavLink>
+                        )}
                     </ListItem>
                 )}
-
             </List>
             <Paper />
         </>
     );
 }
+
+Menu.defaultProps = {
+    balance: 0,
+};
+
+Menu.propTypes = {
+    balance: PropTypes.number,
+};
