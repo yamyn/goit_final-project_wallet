@@ -22,9 +22,9 @@ export const login = credentials => dispatch => {
 
 export const signup = credentials => dispatch => {
     dispatch(signupStart());
-
+    const { confirmedPassword, ...creds } = credentials;
     fetch
-        .post('/register', credentials)
+        .post('/register', creds)
         .then(response => dispatch(signupSuccess(response.data)))
         .catch(error => dispatch(signupError(error)));
 };

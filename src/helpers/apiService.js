@@ -10,3 +10,9 @@ export const setAuthToken = (token, headers) => {
     const newHeaders = headers ? { ...auth, ...headers } : auth;
     return { headers: newHeaders };
 };
+
+export const fetchExchange = () => {
+    return axios.get(
+        'https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11',
+    );
+};

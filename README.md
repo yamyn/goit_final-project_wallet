@@ -1,4 +1,4 @@
-# goit-react-hw-08-phonebook
+# goit_final-project_wallet
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 

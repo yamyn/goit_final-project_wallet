@@ -1,10 +1,20 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import Header from '../components/Header/HeaderContainer';
+import NavBar from '../components/NavBar/NavBar';
+import Diagram from '../components/Diagram/DiagramContainer';
+import useStyles from './pageStyle';
 
 const DiagramPage = () => {
-    return <h1>Diagram page!</h1>;
+    const { classes } = useStyles();
+    return (
+        <>
+            <Header />
+            <div className={classes.mainWrap}>
+                <NavBar />
+                <Diagram />
+            </div>
+        </>
+    );
 };
 
-const mapStateToProps = state => ({});
-
-export default connect(mapStateToProps, null)(DiagramPage);
+export default DiagramPage;

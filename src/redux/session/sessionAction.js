@@ -22,4 +22,9 @@ export const signupError = createAction('SIGNUP/ERROR', error => ({
     meta: { error: true },
 }));
 
+export const diffrentPass = createAction('SIGNUP/ERROR', message => ({
+    payload: { message },
+    meta: { error: true },
+}));
+
 export const logout = createAction('LOGOUT');
