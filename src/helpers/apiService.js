@@ -11,7 +11,7 @@ export const setAuthToken = (token, headers) => {
     return { headers: newHeaders };
 };
 
-export const getExchange = () => {
+export const fetchExchange = () => {
     return axios.get(
         'https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11',
     );

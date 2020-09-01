@@ -6,12 +6,14 @@ export default () => {
     const isNotMobile = useMediaQuery(theme.breakpoints.up('tablet'));
     const laptop = theme.breakpoints.between('740', '1023');
     const isLaptop = useMediaQuery(laptop);
+    const minHeight = isNotMobile || !isLaptop ? 'auto' : '80vh';
 
     return {
         isNotMobile,
         isLaptop,
         classes: makeStyles(() => ({
             container: {
+                minHeight,
                 backgroundColor: '#fff',
                 [theme.breakpoints.up('desktop')]: {
                     flex: '0 0 70%',
@@ -86,6 +88,11 @@ export default () => {
                     right: 70,
                 },
             },
+            emptyData: {
+                width: '80%',
+                position: 'static',
+                margin: '0 auto',
+            },
             picker: {
                 flex: '0 0 48%',
             },
@@ -149,6 +156,16 @@ export default () => {
                     width: 220,
                     margin: '0 0 0 auto',
                 },
+            },
+            ammount: {
+                display: 'block',
+                margin: '0 auto',
+                width: '80%',
+                padding: '50px 0',
+            },
+            emptyInfo: {
+                textAlign: 'center',
+                fontSize: 30,
             },
         }))(),
     };

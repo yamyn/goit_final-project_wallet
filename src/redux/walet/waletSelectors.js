@@ -5,6 +5,7 @@ export const getTransactions = state => state.walet.transactions;
 export const getTransCount = state => state.walet.transactions.length;
 export const getBalance = state => state.walet.balance;
 export const getStatDate = state => state.walet.statDate;
+export const getTransUpTime = state => state.walet.transUpTime;
 export const getStatistic = createSelector(
     [getTransactions, getStatDate],
     (transactions, statDate) => {

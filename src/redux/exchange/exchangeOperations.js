@@ -1,7 +1,7 @@
 import moment from 'moment';
 
-import { getExchange } from '../../helpers/apiService';
-import { getTime } from './exchangeSelectors';
+import { fetchExchange } from '../../helpers/apiService';
+import { getTime, getCount } from './exchangeSelectors';
 
 import {
     loadExchangeStart,
@@ -12,14 +12,17 @@ import {
 const fixTo100 = number => Math.round(number * 100) / 100;
 
 export default () => (dispatch, getState) => {
-    const stateTime = moment(getTime(getState()), 'hh-mm');
-    const condTime = moment().subtract(5, 'm');
-    if (stateTime.isSameOrAfter(condTime)) return;
+    const state = getState();
+    const stateTime = getTime(state);
+    const condTime = moment().subtract(3, 'm').valueOf();
+
+    if (!getCount(state) && stateTime < condTime) return;
 
     dispatch(loadExchangeStart());
 
-    getExchange()
+    fetchExchange()
         .then(response => {
+            console.log(response);
             const currencies = {};
             response.data.forEach(({ ccy, buy, sale }) => {
                 currencies[ccy] = { buy: fixTo100(buy), sale: fixTo100(sale) };
